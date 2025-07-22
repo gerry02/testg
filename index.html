@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Regalo Misterioso</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 10px rgba(255,255,255,0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.6); }
+        }
+
+        .slot-machine {
+            background: linear-gradient(145deg, #f0f0f0, #d0d0d0);
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+            border: 5px solid #ffd700;
+        }
+
+        .slots-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .slot {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #333;
+            border-radius: 10px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .slot-content {
+            transition: transform 0.1s ease;
+        }
+
+        .spinning {
+            animation: spin 0.1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-320px); }
+        }
+
+        .spin-button {
+            background: linear-gradient(145deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(255,107,107,0.3);
+            margin: 10px;
+        }
+
+        .spin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 20px rgba(255,107,107,0.4);
+        }
+
+        .spin-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .message {
+            color: white;
+            font-size: 1.2em;
+            margin: 20px 0;
+            min-height: 30px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .minigame {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .memory-game {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        .memory-card {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(145deg, #ffd700, #ffed4e);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .memory-card:hover {
+            transform: scale(1.05);
+        }
+
+        .memory-card.flipped {
+            background: linear-gradient(145deg, #74b9ff, #0984e3);
+            color: white;
+        }
+
+        .password-game {
+            text-align: center;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.5em;
+            text-align: center;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin: 15px 0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hint {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            color: white;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+
+        .simon-game {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-width: 200px;
+            margin: 20px auto;
+        }
+
+        .simon-button {
+            width: 90px;
+            height: 90px;
+            border: none;
+            border-radius: 15px;
+            font-size: 2em;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .simon-red { background: linear-gradient(145deg, #ff6b6b, #ee5a24); }
+        .simon-blue { background: linear-gradient(145deg, #74b9ff, #0984e3); }
+        .simon-green { background: linear-gradient(145deg, #55efc4, #00b894); }
+        .simon-yellow { background: linear-gradient(145deg, #fdcb6e, #f39c12); }
+
+        .simon-button.active {
+            transform: scale(0.95);
+            filter: brightness(1.5);
+            box-shadow: 0 0 20px rgba(255,255,255,0.8);
+        }
+
+        .puzzle-game {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            max-width: 180px;
+            margin: 20px auto;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        .puzzle-tile {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(145deg, #ddd, #bbb);
+            border: 1px solid #999;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .puzzle-tile.empty {
+            background: transparent;
+            border: 1px dashed #666;
+        }
+
+        .puzzle-tile:hover:not(.empty) {
+            transform: scale(1.1);
+        }
+
+        .countdown {
+            font-size: 2em;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00b894, #55efc4);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+        }
+
+        .final-reveal {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 3px solid #ffd700;
+            animation: finalGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes finalGlow {
+            from { box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 20px rgba(255,215,0,0.5); }
+            to { box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 40px rgba(255,215,0,0.8); }
+        }
+
+        .final-reveal h2 {
+            color: #2d3436;
+            font-size: 2em;
+            margin-bottom: 15px;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .quiz-option {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .suspense-text {
+            font-size: 1.5em;
+            color: #ffeb3b;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            margin: 20px 0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .slot {
+                width: 70px;
+                height: 70px;
+                font-size: 2em;
+            }
+            
+            .memory-card {
+                width: 45px;
+                height: 45px;
+                font-size: 1em;
+            }
+            
+            .simon-button {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎁 Il Regalo Misterioso 🎁</h1>
+        
+        <div id="slot-phase" class="slot-machine">
+            <div class="slots-container">
+                <div class="slot">
+                    <div class="slot-content" id="slot1">🎲</div>
+                </div>
+                <div class="slot">
+                    <div class="slot-content" id="slot2">🎲</div>
+                </div>
+                <div class="slot">
+                    <div class="slot-content" id="slot3">🎲</div>
+                </div>
+            </div>
+            <button class="spin-button" id="spin-btn" onclick="spin()">GIRA!</button>
+            <div class="message" id="slot-message">Premi il pulsante per iniziare l'avventura!</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+        </div>
+
+        <div id="memory-game" class="minigame hidden">
+            <h3 style="color: white; margin-bottom: 15px;">🧠 Sfida della Memoria Estrema</h3>
+            <p style="color: white; margin-bottom: 15px; font-size: 0.9em;">Trova tutte le 8 coppie! Hai solo 60 secondi!</p>
+            <div class="countdown" id="memory-timer">60</div>
+            <div class="memory-game" id="memory-board">
+                <!-- Cards will be generated by JS -->
+            </div>
+            <div class="message" id="memory-message">Clicca le carte per rivelare i simboli!</div>
+        </div>
+
+        <div id="password-game" class="minigame hidden">
+            <h3 style="color: white; margin-bottom: 15px;">🔐 Codice Segreto</h3>
+            <p style="color: white; margin-bottom: 15px;">Decifra il codice per sbloccare la prossima sfida!</p>
+            <input type="text" class="password-input" id="password-input" placeholder="INSERISCI CODICE" maxlength="6">
+            <div class="hint">
+                💡 <strong>Indizio:</strong><br>
+                Prima lettera: quella che viene dopo M<br>
+                Resto del codice: l'anno del nostro primo bacio + 1
+            </div>
+            <button class="spin-button" onclick="checkPassword()">VERIFICA</button>
+            <div class="message" id="password-message">Usa l'indizio per scoprire il codice...</div>
+        </div>
+
+        <div id="simon-game" class="minigame hidden">
+            <h3 style="color: white; margin-bottom: 15px;">🎵 Simon Dice - Livello Impossibile</h3>
+            <p style="color: white; margin-bottom: 15px;">Ripeti la sequenza di 8 colori senza sbagliare!</p>
+            <div class="suspense-text" id="simon-level">Livello: 1/8</div>
+            <div class="simon-game">
+                <button class="simon-button simon-red" onclick="simonClick(0)"></button>
+                <button class="simon-button simon-blue" onclick="simonClick(1)"></button>
+                <button class="simon-button simon-green" onclick="simonClick(2)"></button>
+                <button class="simon-button simon-yellow" onclick="simonClick(3)"></button>
+            </div>
+            <button class="spin-button" id="simon-start" onclick="startSimon()">INIZIA SEQUENZA</button>
+            <div class="message" id="simon-message">Osserva attentamente la sequenza, poi ripetila!</div>
+        </div>
+
+        <div id="puzzle-game" class="minigame hidden">
+            <h3 style="color: white; margin-bottom: 15px;">🧩 Puzzle Scorrevole</h3>
+            <p style="color: white; margin-bottom: 15px;">Ricomponi i numeri in ordine da 1 a 8!</p>
+            <div class="countdown" id="puzzle-timer">120</div>
+            <div class="puzzle-game" id="puzzle-board">
+                <!-- Puzzle tiles will be generated by JS -->
+            </div>
+            <button class="spin-button" onclick="shufflePuzzle()">MESCOLA</button>
+            <div class="message" id="puzzle-message">Clicca i numeri vicini allo spazio vuoto per spostarli!</div>
+        </div>
+
+        <div id="final-suspense" class="minigame hidden">
+            <h3 style="color: white; margin-bottom: 20px;">🎭 Il Momento della Verità</h3>
+            <div class="suspense-text">Il destino ti ha portato fin qui...</div>
+            <div class="suspense-text" style="animation-delay: 2s;">Hai superato ogni sfida...</div>
+            <div class="suspense-text" style="animation-delay: 4s;">Ora scopri cosa ti aspetta...</div>
+            <div class="countdown" id="final-countdown">10</div>
+            <div class="message" id="final-suspense-message">Preparati alla rivelazione finale...</div>
+        </div>
+
+        <div id="final-reveal" class="hidden">
+            <div class="final-reveal">
+                <h2>🎉 CONGRATULAZIONI! 🎉</h2>
+                <div style="font-size: 3em; margin: 20px 0;">✈️🌞🌊</div>
+                <h3 style="color: #2d3436; margin-bottom: 15px;">HAI CONQUISTATO:</h3>
+                <h1 style="color: #e17055; font-size: 2.5em; margin-bottom: 20px; animation: none;">VACANZA A IBIZA!</h1>
+                <p style="color: #636e72; font-size: 1.1em; line-height: 1.5;">
+                    Mare cristallino, tramonti mozzafiato e momenti indimenticabili ti aspettano! 🏝️
+                </p>
+                <div style="margin-top: 20px; font-size: 1.5em;">💕</div>
+                <p style="color: #2d3436; font-size: 0.9em; margin-top: 15px; font-style: italic;">
+                    Hai dimostrato di essere una vera campionessa! 🏆
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const symbols = ['🎲', '🍀', '⭐', '🎯', '🔮', '💎', '🎪', '🎨', '🎭', '🎪'];
+        let spinCount = 0;
+        let gamePhase = 'slot';
+        let challengesCompleted = 0;
+        const totalChallenges = 4;
+        
+        // Memory game variables
+        const memorySymbols = ['🏖️', '☀️', '🌊', '🏝️', '🐚', '🦋', '🌺', '⭐', '🏖️', '☀️', '🌊', '🏝️', '🐚', '🦋', '🌺', '⭐'];
+        let memoryCards = [];
+        let flippedCards = [];
+        let matches = 0;
+        let memoryTimer = 60;
+        let memoryInterval;
+
+        // Simon game variables
+        let simonSequence = [];
+        let playerSequence = [];
+        let simonLevel = 0;
+        let simonPlaying = false;
+        let simonWatching = false;
+
+        // Puzzle game variables
+        let puzzleBoard = [1, 2, 3, 4, 5, 6, 7, 8, 0];
+        let puzzleTimer = 120;
+        let puzzleInterval;
+
+        function updateProgress() {
+            const progress = (challengesCompleted / totalChallenges) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function spin() {
+            const button = document.getElementById('spin-btn');
+            const message = document.getElementById('slot-message');
+            const slots = ['slot1', 'slot2', 'slot3'];
+            
+            button.disabled = true;
+            spinCount++;
+
+            slots.forEach(slotId => {
+                document.getElementById(slotId).classList.add('spinning');
+            });
+
+            setTimeout(() => {
+                slots.forEach(slotId => {
+                    document.getElementById(slotId).classList.remove('spinning');
+                });
+
+                if (spinCount < 4) {
+                    slots.forEach(slotId => {
+                        document.getElementById(slotId).textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    });
+                    
+                    const messages = [
+                        "Ancora niente... ma sento qualcosa nell'aria! 🤔",
+                        "Il mistero si infittisce... continua! 😏",
+                        "Le forze del destino si stanno allineando... 🌟"
+                    ];
+                    message.textContent = messages[spinCount - 1];
+                    button.disabled = false;
+                } else if (spinCount === 4) {
+                    document.getElementById('slot1').textContent = '🍒';
+                    document.getElementById('slot2').textContent = '🍒';
+                    document.getElementById('slot3').textContent = '🔔';
+                    message.textContent = "Così vicino... ma non è ancora il momento giusto! 😅";
+                    button.disabled = false;
+                } else if (spinCount === 5) {
+                    document.getElementById('slot1').textContent = '💰';
+                    document.getElementById('slot2').textContent = '💰';
+                    document.getElementById('slot3').textContent = '💰';
+                    message.textContent = "La fortuna ti sorride, ma c'è di meglio in arrivo! 💫";
+                    button.disabled = false;
+                } else if (spinCount === 6) {
+                    document.getElementById('slot1').textContent = '🔮';
+                    document.getElementById('slot2').textContent = '🔮';
+                    document.getElementById('slot3').textContent = '🔮';
+                    message.textContent = "La magia sta per iniziare... Ma prima devi superare le prove! 🧙‍♀️";
+                    
+                    setTimeout(() => {
+                        document.getElementById('slot-phase').classList.add('hidden');
+                        document.getElementById('memory-game').classList.remove('hidden');
+                        initMemoryGame();
+                    }, 3000);
+                }
+            }, 3000);
+        }
+
+        function initMemoryGame() {
+            memoryCards = shuffleArray([...memorySymbols]);
+            flippedCards = [];
+            matches = 0;
+            memoryTimer = 60;
+            
+            const board = document.getElementById('memory-board');
+            board.innerHTML = '';
+            
+            for (let i = 0; i < 16; i++) {
+                const card = document.createElement('button');
+                card.className = 'memory-card';
+                card.textContent = '?';
+                card.onclick = () => flipCard(i);
+                board.appendChild(card);
+            }
+
+            memoryInterval = setInterval(() => {
+                memoryTimer--;
+                document.getElementById('memory-timer').textContent = memoryTimer;
+                
+                if (memoryTimer <= 0) {
+                    clearInterval(memoryInterval);
+                    document.getElementById('memory-message').textContent = "Tempo scaduto! Riprova!";
+                    setTimeout(() => initMemoryGame(), 2000);
+                }
+            }, 1000);
+        }
+
+        function flipCard(index) {
+            const cards = document.querySelectorAll('.memory-card');
+            const card = cards[index];
+            const message = document.getElementById('memory-message');
+
+            if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                card.textContent = memoryCards[index];
+                card.classList.add('flipped');
+                flippedCards.push({ index, symbol: memoryCards[index] });
+
+                if (flippedCards.length === 2) {
+                    setTimeout(() => {
+                        if (flippedCards[0].symbol === flippedCards[1].symbol) {
+                            matches++;
+                            message.textContent = `Bravo! Coppie trovate: ${matches}/8 🎉`;
+                            
+                            if (matches === 8) {
+                                clearInterval(memoryInterval);
+                                challengesCompleted++;
+                                updateProgress();
+                                message.textContent = "Memoria incredibile! Prossima sfida in arrivo...";
+                                setTimeout(() => {
+                                    document.getElementById('memory-game').classList.add('hidden');
+                                    document.getElementById('password-game').classList.remove('hidden');
+                                }, 2000);
+                            }
+                        } else {
+                            cards[flippedCards[0].index].textContent = '?';
+                            cards[flippedCards[0].index].classList.remove('flipped');
+                            cards[flippedCards[1].index].textContent = '?';
+                            cards[flippedCards[1].index].classList.remove('flipped');
+                            message.textContent = "Non è una coppia! Continua a cercare... 🤔";
+                        }
+                        flippedCards = [];
+                    }, 1200);
+                }
+            }
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('password-input');
+            const message = document.getElementById('password-message');
+            const password = input.value.toUpperCase();
+            
+            // Assuming they started dating in 2020, so answer would be N2021
+            if (password === 'N2021' || password === 'N2022' || password === 'N2023' || password === 'N2024') {
+                message.textContent = "🎉 Codice corretto! Intelligente come sempre!";
+                challengesCompleted++;
+                updateProgress();
+                setTimeout(() => {
+                    document.getElementById('password-game').classList.add('hidden');
+                    document.getElementById('simon-game').classList.remove('hidden');
+                }, 2000);
+            } else {
+                message.textContent = "❌ Codice errato! Rifletti sui nostri momenti speciali...";
+                input.value = '';
+                input.style.border = '2px solid #ff6b6b';
+                setTimeout(() => {
+                    input.style.border = '2px solid #ddd';
+                }, 1000);
+            }
+        }
+
+        function startSimon() {
+            simonSequence = [];
+            playerSequence = [];
+            simonLevel = 0;
+            document.getElementById('simon-start').style.display = 'none';
+            nextSimonLevel();
+        }
+
+        function nextSimonLevel() {
+            simonLevel++;
+            document.getElementById('simon-level').textContent = `Livello: ${simonLevel}/8`;
+            simonSequence.push(Math.floor(Math.random() * 4));
+            playerSequence = [];
+            playSimonSequence();
+        }
+
+        function playSimonSequence() {
+            simonWatching = true;
+            let i = 0;
+            const interval = setInterval(() => {
+                const buttons = document.querySelectorAll('.simon-button');
+                buttons[simonSequence[i]].classList.add('active');
+                
+                setTimeout(() => {
+                    buttons[simonSequence[i]].classList.remove('active');
+                }, 400);
+                
+                i++;
+                if (i >= simonSequence.length) {
+                    clearInterval(interval);
+                    simonWatching = false;
+                    document.getElementById('simon-message').textContent = "Ora ripeti la sequenza!";
+                }
+            }, 600);
+        }
+
+        function simonClick(color) {
+            if (simonWatching) return;
+            
+            const buttons = document.querySelectorAll('.simon-button');
+            buttons[color].classList.add('active');
+            setTimeout(() => buttons[color].classList.remove('active'), 200);
+            
+            playerSequence.push(color);
+            
+            if (playerSequence[playerSequence.length - 1] !== simonSequence[playerSequence.length - 1]) {
+                document.getElementById('simon-message').textContent = "❌ Sequenza sbagliata! Ricominciamo...";
+                setTimeout(() => startSimon(), 2000);
+                return;
+            }
+            
+            if (playerSequence.length === simonSequence.length) {
+                if (simonLevel === 8) {
+                    document.getElementById('simon-message').textContent = "🎉 Sequenza perfetta completata!";
+                    challengesCompleted++;
+                    updateProgress();
+                    setTimeout(() => {
+                        document.getElementById('simon-game').classList.add('hidden');
+                        document.getElementById('puzzle-game').classList.remove('hidden');
+                        initPuzzleGame();
+                    }, 2000);
+                } else {
+                    document.getElementById('simon-message').textContent = "✅ Corretto! Prossimo livello...";
+                    setTimeout(() => nextSimonLevel(), 1500);
+                }
+            }
+        }
+
+        function initPuzzleGame() {
+            puzzleTimer = 120;
+            shufflePuzzle();
+            
+            puzzleInterval = setInterval(() => {
+                puzzleTimer--;
+                document.getElementById('puzzle-timer').textContent = puzzleTimer;
+                
+                if (puzzleTimer <= 0) {
+                    clearInterval(puzzleInterval);
+                    document.getElementById('puzzle-message').textContent = "Tempo scaduto! Nuovo puzzle!";
+                    setTimeout(() => initPuzzleGame(), 2000);
+                }
+            }, 1000);
+        }
+
+        function shufflePuzzle() {
+            // Simple shuffle algorithm
+            for (let i = 0; i < 100; i++) {
+                const emptyIndex = puzzleBoard.indexOf(0);
+                const possibleMoves = [];
+                
+                if (emptyIndex > 2) possibleMoves.push(emptyIndex - 3);
+                if (emptyIndex < 6) possibleMoves.push(emptyIndex + 3);
+                if (emptyIndex % 3 !== 0) possibleMoves.push(emptyIndex - 1);
+                if (emptyIndex % 3 !== 2) possibleMoves.push(emptyIndex + 1);
+                
+                if (possibleMoves.length > 0) {
+                    const randomMove = possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+                    [puzzleBoard[emptyIndex], puzzleBoard[randomMove]] = [puzzleBoard[randomMove], puzzleBoard[emptyIndex]];
+                }
+            }
+            renderPuzzle();
+        }
+
+        function renderPuzzle() {
+            const board = document.getElementById('puzzle-board');
+            board.innerHTML = '';
+            
+            for (let i = 0; i < 9; i++) {
+                const tile = document.createElement('div');
+                tile.className = puzzleBoard[i] === 0 ? 'puzzle-tile empty' : 'puzzle-tile';
+                tile.textContent = puzzleBoard[i] === 0 ? '' : puzzleBoard[i];
+                tile.onclick = () => movePuzzleTile(i);
+                board.appendChild(tile);
+            }
+        }
+
+        function movePuzzleTile(index) {
+            const emptyIndex = puzzleBoard.indexOf(0);
+            const canMove = 
+                (Math.abs(index - emptyIndex) === 1 && Math.floor(index / 3) === Math.floor(emptyIndex / 3)) ||
+                Math.abs(index - emptyIndex) === 3;
+            
+            if (canMove) {
+                [puzzleBoard[index], puzzleBoard[emptyIndex]] = [puzzleBoard[emptyIndex], puzzleBoard[index]];
+                renderPuzzle();
+                
+                if (isPuzzleSolved()) {
+                    clearInterval(puzzleInterval);
+                    document.getElementById('puzzle-message').textContent = "🎉 Puzzle risolto! Ultimo passo...";
+                    challengesCompleted++;
+                    updateProgress();
+                    setTimeout(() => {
+                        document.getElementById('puzzle-game').classList.add('hidden');
+                        document.getElementById('final-suspense').classList.remove('hidden');
+                        startFinalCountdown();
+                    }, 2000);
+                }
+            }
+        }
+
+        function isPuzzleSolved() {
+            for (let i = 0; i < 8; i++) {
+                if (puzzleBoard[i] !== i + 1) return false;
+            }
+            return puzzleBoard[8] === 0;
+        }
+
+        function startFinalCountdown() {
+            let countdown = 10;
+            const countdownElement = document.getElementById('final-countdown');
+            const messageElement = document.getElementById('final-suspense-message');
+            
+            const suspenseMessages = [
+                "Il momento che hai aspettato si avvicina...",
+                "Tutti i pezzi del puzzle stanno per unirsi...",
+                "La tua ricompensa sta per essere rivelata...",
+                "Preparati a vivere un'esperienza incredibile...",
+                "Il destino ha un regalo speciale per te..."
+            ];
+            
+            const interval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                
+                if (countdown <= 5 && countdown > 0) {
+                    messageElement.textContent = suspenseMessages[5 - countdown] || "Quasi... quasi...";
+                }
+                
+                if (countdown === 0) {
+                    clearInterval(interval);
+                    messageElement.textContent = "✨ È ARRIVATO IL MOMENTO! ✨";
+                    setTimeout(() => {
+                        document.getElementById('final-suspense').classList.add('hidden');
+                        finalSlotSpin();
+                    }, 2000);
+                }
+            }, 1000);
+        }
+
+        function finalSlotSpin() {
+            document.getElementById('slot-phase').classList.remove('hidden');
+            const message = document.getElementById('slot-message');
+            const button = document.getElementById('spin-btn');
+            
+            message.textContent = "🥁 IL GIRO DELLA VERITÀ! 🥁";
+            button.textContent = "SCOPRI IL REGALO!";
+            button.disabled = false;
+            button.style.background = "linear-gradient(145deg, #00b894, #55efc4)";
+            button.style.fontSize = "1.5em";
+            button.style.animation = "pulse 1s ease-in-out infinite";
+            
+            button.onclick = () => {
+                const slots = ['slot1', 'slot2', 'slot3'];
+                button.disabled = true;
+                message.textContent = "🌟 I fili del destino si stanno tessendo... 🌟";
+                
+                // Extra suspense with multiple spinning phases
+                slots.forEach(slotId => {
+                    document.getElementById(slotId).classList.add('spinning');
+                });
+
+                // First phase - fake suspense
+                setTimeout(() => {
+                    document.getElementById('slot1').classList.remove('spinning');
+                    document.getElementById('slot1').textContent = '✈️';
+                    message.textContent = "✈️ Primo simbolo rivelato! Continua...";
+                }, 2000);
+
+                // Second phase
+                setTimeout(() => {
+                    document.getElementById('slot2').classList.remove('spinning');
+                    document.getElementById('slot2').textContent = '🌞';
+                    message.textContent = "🌞 Secondo simbolo! Ultimo giro decisivo...";
+                }, 4000);
+
+                // Final phase with maximum suspense
+                setTimeout(() => {
+                    document.getElementById('slot3').classList.remove('spinning');
+                    document.getElementById('slot3').textContent = '🌊';
+                    message.textContent = "🎊 JACKPOT LEGGENDARIO! 🎊";
+                    
+                    // Create massive confetti explosion
+                    createMassiveConfetti();
+                    
+                    setTimeout(() => {
+                        document.getElementById('slot-phase').classList.add('hidden');
+                        document.getElementById('final-reveal').classList.remove('hidden');
+                        playVictorySound();
+                    }, 3000);
+                }, 6000);
+            };
+        }
+
+        function createMassiveConfetti() {
+            const colors = ['#ff6b6b', '#feca57', '#48dbfb', '#ff9ff3', '#54a0ff', '#5f27cd', '#00d2d3', '#ff9f43', '#10ac84', '#ee5a24'];
+            
+            // Create multiple waves of confetti
+            for (let wave = 0; wave < 5; wave++) {
+                setTimeout(() => {
+                    for (let i = 0; i < 30; i++) {
+                        setTimeout(() => {
+                            const confetti = document.createElement('div');
+                            confetti.className = 'confetti';
+                            confetti.style.left = Math.random() * window.innerWidth + 'px';
+                            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                            confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                            confetti.style.height = (Math.random() * 8 + 5) + 'px';
+                            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                            
+                            const duration = Math.random() * 3 + 2;
+                            const rotation = Math.random() * 360;
+                            
+                            confetti.style.animation = `fall ${duration}s linear forwards, rotate ${duration}s linear forwards`;
+                            
+                            const style = document.createElement('style');
+                            style.textContent = `
+                                @keyframes fall {
+                                    to {
+                                        transform: translateY(${window.innerHeight + 100}px) rotate(${rotation}deg);
+                                        opacity: 0;
+                                    }
+                                }
+                                @keyframes rotate {
+                                    to {
+                                        transform: rotate(${rotation * 2}deg);
+                                    }
+                                }
+                            `;
+                            document.head.appendChild(style);
+                            
+                            document.body.appendChild(confetti);
+                            
+                            setTimeout(() => {
+                                if (confetti.parentNode) confetti.remove();
+                                if (style.parentNode) style.remove();
+                            }, duration * 1000 + 500);
+                        }, i * 50);
+                    }
+                }, wave * 300);
+            }
+        }
+
+        function playVictorySound() {
+            // Create a simple victory sound using Web Audio API
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C5
+                oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.2); // E5
+                oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.4); // G5
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 1);
+            } catch (e) {
+                // Fallback if Web Audio API is not supported
+                console.log('Audio not supported');
+            }
+        }
+
+        // Initialize the game
+        updateProgress();
+    </script>
+</body>
+</html>
