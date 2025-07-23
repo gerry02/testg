@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Il Regalo Misterioso</title>
+    <title>Tanti auguri Bubon!</title>
     <style>
         * {
             margin: 0;
@@ -334,6 +334,25 @@
             transform: translateY(-2px);
         }
 
+                .download-btn {
+            display: inline-block;
+            background: linear-gradient(145deg, #55efc4, #00b894);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 184, 148, 0.3);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 184, 148, 0.4);
+        }
+
         .suspense-text {
             font-size: 1.5em;
             color: #ffeb3b;
@@ -378,7 +397,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>🎁 Il Regalo Misterioso 🎁</h1>
+        <h1>Buon Compleanno!     Bubon 🎁🎁</h1>
         
         <div id="slot-phase" class="slot-machine">
             <div class="slots-container">
@@ -393,7 +412,7 @@
                 </div>
             </div>
             <button class="spin-button" id="spin-btn" onclick="spin()">GIRA!</button>
-            <div class="message" id="slot-message">Premi il pulsante per iniziare l'avventura!</div>
+            <div class="message" id="slot-message">Premi il pulsante per iniziare a giocare !</div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progress"></div>
             </div>
@@ -412,18 +431,17 @@
         <div id="password-game" class="minigame hidden">
             <h3 style="color: white; margin-bottom: 15px;">🔐 Codice Segreto</h3>
             <p style="color: white; margin-bottom: 15px;">Decifra il codice per sbloccare la prossima sfida!</p>
-            <input type="text" class="password-input" id="password-input" placeholder="INSERISCI CODICE" maxlength="6">
+            <input type="text" class="password-input" id="password-input" placeholder="INSERISCI CODICE" maxlength="20">
             <div class="hint">
                 💡 <strong>Indizio:</strong><br>
-                Prima lettera: quella che viene dopo M<br>
-                Resto del codice: l'anno del nostro primo bacio + 1
+                Il mio soprannome preferito con cui tu mi chiami<br>
             </div>
             <button class="spin-button" onclick="checkPassword()">VERIFICA</button>
             <div class="message" id="password-message">Usa l'indizio per scoprire il codice...</div>
         </div>
 
         <div id="simon-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">🎵 Simon Dice - Livello Impossibile</h3>
+            <h3 style="color: white; margin-bottom: 15px;">🎵 Simon says - Livello Impossibile</h3>
             <p style="color: white; margin-bottom: 15px;">Ripeti la sequenza di 8 colori senza sbagliare!</p>
             <div class="suspense-text" id="simon-level">Livello: 1/8</div>
             <div class="simon-game">
@@ -459,15 +477,10 @@
         <div id="final-reveal" class="hidden">
             <div class="final-reveal">
                 <h2>🎉 CONGRATULAZIONI! 🎉</h2>
-                <div style="font-size: 3em; margin: 20px 0;">✈️🌞🌊</div>
-                <h3 style="color: #2d3436; margin-bottom: 15px;">HAI CONQUISTATO:</h3>
-                <h1 style="color: #e17055; font-size: 2.5em; margin-bottom: 20px; animation: none;">VACANZA A IBIZA!</h1>
-                <p style="color: #636e72; font-size: 1.1em; line-height: 1.5;">
-                    Mare cristallino, tramonti mozzafiato e momenti indimenticabili ti aspettano! 🏝️
-                </p>
-                <div style="margin-top: 20px; font-size: 1.5em;">💕</div>
-                <p style="color: #2d3436; font-size: 0.9em; margin-top: 15px; font-style: italic;">
-                    Hai dimostrato di essere una vera campionessa! 🏆
+                <p class="gift-reveal" style="font-size: 1.2em; color: #2d3436; margin: 20px 0;">Hai superato tutte le prove e hai sbloccato il tuo regalo!</p>
+                <a href="regalo.PNG" download="regalo.PNG" class="download-btn">🎁 Scarica la tua Sorpresa! 🎁</a>
+                 <p style="color: #636e72; font-size: 0.9em; margin-top: 20px;">
+                    Clicca il pulsante per scoprire cosa ti aspetta... 😉
                 </p>
             </div>
         </div>
@@ -481,12 +494,18 @@
         const totalChallenges = 4;
         
         // Memory game variables
-        const memorySymbols = ['🏖️', '☀️', '🌊', '🏝️', '🐚', '🦋', '🌺', '⭐', '🏖️', '☀️', '🌊', '🏝️', '🐚', '🦋', '🌺', '⭐'];
+        let memoryImages = [];
         let memoryCards = [];
         let flippedCards = [];
         let matches = 0;
         let memoryTimer = 60;
         let memoryInterval;
+        
+        // Load images from folder
+        function loadMemoryImages() {
+            const imageNames = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png'];
+            memoryImages = [...imageNames, ...imageNames]; // Create pairs
+        }
 
         // Simon game variables
         let simonSequence = [];
@@ -536,9 +555,9 @@
                     });
                     
                     const messages = [
-                        "Ancora niente... ma sento qualcosa nell'aria! 🤔",
-                        "Il mistero si infittisce... continua! 😏",
-                        "Le forze del destino si stanno allineando... 🌟"
+                        "Niente... sei un pò sfigata 🤔",
+                        "Ancora niente.. continua! 😏",
+                        "Minchia bubon dai un pò di energia... 🌟"
                     ];
                     message.textContent = messages[spinCount - 1];
                     button.disabled = false;
@@ -546,19 +565,43 @@
                     document.getElementById('slot1').textContent = '🍒';
                     document.getElementById('slot2').textContent = '🍒';
                     document.getElementById('slot3').textContent = '🔔';
-                    message.textContent = "Così vicino... ma non è ancora il momento giusto! 😅";
+                    message.textContent = "Quasi... impegnati di più! 😅";
                     button.disabled = false;
                 } else if (spinCount === 5) {
-                    document.getElementById('slot1').textContent = '💰';
-                    document.getElementById('slot2').textContent = '💰';
-                    document.getElementById('slot3').textContent = '💰';
-                    message.textContent = "La fortuna ti sorride, ma c'è di meglio in arrivo! 💫";
+                    document.getElementById('slot1').textContent = '💋';
+                    document.getElementById('slot2').textContent = '💋';
+                    document.getElementById('slot3').textContent = '💋';
+                    message.textContent = "Bravaa! hai vinto un bacino! 💋";
                     button.disabled = false;
                 } else if (spinCount === 6) {
+                document.getElementById('slot1').textContent = '🔮';
+                document.getElementById('slot2').textContent = '💰';
+                document.getElementById('slot3').textContent = '🔔';
+                message.textContent = "Ancora niente bubon... 😅";
+                button.disabled = false;
+                } else if (spinCount === 7) {
+                document.getElementById('slot1').textContent = '💰';
+                document.getElementById('slot2').textContent = '💰';
+                document.getElementById('slot3').textContent = '💰';
+                message.textContent = "Finalmente!! hai vinto un euro";
+                button.disabled = false;
+                } else if (spinCount === 8) {
+                document.getElementById('slot1').textContent = '💋';
+                document.getElementById('slot2').textContent = '💰';
+                document.getElementById('slot3').textContent = '🍒';
+                message.textContent = "Bubon ci sei quasii !";
+                button.disabled = false;
+                } else if (spinCount === 9) {
+                document.getElementById('slot1').textContent = '💰';
+                document.getElementById('slot2').textContent = '💰';
+                document.getElementById('slot3').textContent = '🍒';
+                message.textContent = "Stai diventanto ludopatica";
+                button.disabled = false;
+                } else if (spinCount === 10) {
                     document.getElementById('slot1').textContent = '🔮';
                     document.getElementById('slot2').textContent = '🔮';
                     document.getElementById('slot3').textContent = '🔮';
-                    message.textContent = "La magia sta per iniziare... Ma prima devi superare le prove! 🧙‍♀️";
+                    message.textContent = "JACKPOT!!! ...o quasi!";
                     
                     setTimeout(() => {
                         document.getElementById('slot-phase').classList.add('hidden');
@@ -570,7 +613,8 @@
         }
 
         function initMemoryGame() {
-            memoryCards = shuffleArray([...memorySymbols]);
+            loadMemoryImages();
+            memoryCards = shuffleArray([...memoryImages]);
             flippedCards = [];
             matches = 0;
             memoryTimer = 60;
@@ -581,6 +625,9 @@
             for (let i = 0; i < 16; i++) {
                 const card = document.createElement('button');
                 card.className = 'memory-card';
+                card.style.backgroundImage = 'none';
+                card.style.backgroundSize = 'cover';
+                card.style.backgroundPosition = 'center';
                 card.textContent = '?';
                 card.onclick = () => flipCard(i);
                 board.appendChild(card);
@@ -604,7 +651,8 @@
             const message = document.getElementById('memory-message');
 
             if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
-                card.textContent = memoryCards[index];
+                card.textContent = '';
+                card.style.backgroundImage = `url('${memoryCards[index]}')`;
                 card.classList.add('flipped');
                 flippedCards.push({ index, symbol: memoryCards[index] });
 
@@ -612,7 +660,7 @@
                     setTimeout(() => {
                         if (flippedCards[0].symbol === flippedCards[1].symbol) {
                             matches++;
-                            message.textContent = `Bravo! Coppie trovate: ${matches}/8 🎉`;
+                            message.textContent = `Brava! Coppie trovate: ${matches}/8 🎉`;
                             
                             if (matches === 8) {
                                 clearInterval(memoryInterval);
@@ -626,8 +674,10 @@
                             }
                         } else {
                             cards[flippedCards[0].index].textContent = '?';
+                            cards[flippedCards[0].index].style.backgroundImage = 'none';
                             cards[flippedCards[0].index].classList.remove('flipped');
                             cards[flippedCards[1].index].textContent = '?';
+                            cards[flippedCards[1].index].style.backgroundImage = 'none';
                             cards[flippedCards[1].index].classList.remove('flipped');
                             message.textContent = "Non è una coppia! Continua a cercare... 🤔";
                         }
@@ -642,8 +692,8 @@
             const message = document.getElementById('password-message');
             const password = input.value.toUpperCase();
             
-            // Assuming they started dating in 2020, so answer would be N2021
-            if (password === 'N2021' || password === 'N2022' || password === 'N2023' || password === 'N2024') {
+
+            if (password === 'FINFURLI') {
                 message.textContent = "🎉 Codice corretto! Intelligente come sempre!";
                 challengesCompleted++;
                 updateProgress();
@@ -652,7 +702,7 @@
                     document.getElementById('simon-game').classList.remove('hidden');
                 }, 2000);
             } else {
-                message.textContent = "❌ Codice errato! Rifletti sui nostri momenti speciali...";
+                message.textContent = "❌ Pssword errata! Bubon mi deludi...";
                 input.value = '';
                 input.style.border = '2px solid #ff6b6b';
                 setTimeout(() => {
@@ -681,19 +731,22 @@
             simonWatching = true;
             let i = 0;
             const interval = setInterval(() => {
-                const buttons = document.querySelectorAll('.simon-button');
-                buttons[simonSequence[i]].classList.add('active');
-                
-                setTimeout(() => {
-                    buttons[simonSequence[i]].classList.remove('active');
-                }, 400);
-                
-                i++;
                 if (i >= simonSequence.length) {
                     clearInterval(interval);
                     simonWatching = false;
                     document.getElementById('simon-message').textContent = "Ora ripeti la sequenza!";
+                    return;
                 }
+
+                const buttons = document.querySelectorAll('.simon-button');
+                const button = buttons[simonSequence[i]];
+                button.classList.add('active');
+                
+                setTimeout(() => {
+                    button.classList.remove('active');
+                }, 400);
+                
+                i++;
             }, 600);
         }
 
@@ -809,11 +862,16 @@
         }
 
         function startFinalCountdown() {
-            let countdown = 10;
+            let countdown = 15; // Increased for more suspense
             const countdownElement = document.getElementById('final-countdown');
             const messageElement = document.getElementById('final-suspense-message');
             
             const suspenseMessages = [
+                "Stiamo calibrando i flussocanali quantici...",
+                "Reticolando gli splines...",
+                "Un attimo, sto cercando le chiavi dell'astronave...",
+                "Quasi... devo solo ricordarmi la password del Wi-Fi cosmico.",
+                "Ok, trovato! Era 'password123'.",
                 "Il momento che hai aspettato si avvicina...",
                 "Tutti i pezzi del puzzle stanno per unirsi...",
                 "La tua ricompensa sta per essere rivelata...",
@@ -825,8 +883,12 @@
                 countdown--;
                 countdownElement.textContent = countdown;
                 
-                if (countdown <= 5 && countdown > 0) {
-                    messageElement.textContent = suspenseMessages[5 - countdown] || "Quasi... quasi...";
+                if (countdown <= 10 && countdown > 0) {
+                    messageElement.textContent = suspenseMessages[10 - countdown] || "Ancora un attimo...";
+                }
+
+                if (countdown === 5) {
+                    messageElement.textContent = "Oh no! Un'interferenza aliena! ...scherzo!";
                 }
                 
                 if (countdown === 0) {
@@ -857,38 +919,60 @@
                 button.disabled = true;
                 message.textContent = "🌟 I fili del destino si stanno tessendo... 🌟";
                 
-                // Extra suspense with multiple spinning phases
                 slots.forEach(slotId => {
                     document.getElementById(slotId).classList.add('spinning');
                 });
 
-                // First phase - fake suspense
+                // Red herring phase
                 setTimeout(() => {
                     document.getElementById('slot1').classList.remove('spinning');
-                    document.getElementById('slot1').textContent = '✈️';
-                    message.textContent = "✈️ Primo simbolo rivelato! Continua...";
+                    document.getElementById('slot1').textContent = '🍕';
+                    message.textContent = "Uhm... una pizza? Non credo sia questo...";
                 }, 2000);
 
-                // Second phase
                 setTimeout(() => {
                     document.getElementById('slot2').classList.remove('spinning');
-                    document.getElementById('slot2').textContent = '🌞';
-                    message.textContent = "🌞 Secondo simbolo! Ultimo giro decisivo...";
+                    document.getElementById('slot2').textContent = '🧦';
+                    message.textContent = "Un calzino? Stiamo scherzando?! Ritentiamo!";
                 }, 4000);
 
-                // Final phase with maximum suspense
                 setTimeout(() => {
                     document.getElementById('slot3').classList.remove('spinning');
-                    document.getElementById('slot3').textContent = '🌊';
-                    message.textContent = "🎊 JACKPOT LEGGENDARIO! 🎊";
-                    
-                    // Create massive confetti explosion
-                    createMassiveConfetti();
-                    
+                    document.getElementById('slot3').textContent = '🥦';
+                    message.textContent = "Broccoli?! No, no, no. Il sistema deve essere impazzito. Reset!";
+                    // Reset and spin again
                     setTimeout(() => {
-                        document.getElementById('slot-phase').classList.add('hidden');
-                        document.getElementById('final-reveal').classList.remove('hidden');
-                        playVictorySound();
+                        message.textContent = "Ok, riproviamo sul serio questa volta!";
+                        slots.forEach(slotId => {
+                            document.getElementById(slotId).textContent = '🎁';
+                            document.getElementById(slotId).classList.add('spinning');
+                        });
+                        // Real spin
+                        setTimeout(() => {
+                            document.getElementById('slot1').classList.remove('spinning');
+                            document.getElementById('slot1').textContent = '✈️';
+                            message.textContent = "✈️ Ok, questo è più promettente...";
+                        }, 2000);
+
+                        setTimeout(() => {
+                            document.getElementById('slot2').classList.remove('spinning');
+                            document.getElementById('slot2').textContent = '🌞';
+                            message.textContent = "🌞 Molto meglio! L'ultimo...";
+                        }, 4000);
+
+                        setTimeout(() => {
+                            document.getElementById('slot3').classList.remove('spinning');
+                            document.getElementById('slot3').textContent = '🌊';
+                            message.textContent = "🎊 JACKPOT LEGGENDARIO! 🎊";
+                            
+                            createMassiveConfetti();
+                            
+                            setTimeout(() => {
+                                document.getElementById('slot-phase').classList.add('hidden');
+                                document.getElementById('final-reveal').classList.remove('hidden');
+                                playVictorySound();
+                            }, 3000);
+                        }, 6000);
                     }, 3000);
                 }, 6000);
             };
