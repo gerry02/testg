@@ -397,18 +397,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Buon Compleanno!     Bubon 🎁🎁</h1>
+        <h1>Buon Compleanno!     Bubon ðŸŽðŸŽ</h1>
         
         <div id="slot-phase" class="slot-machine">
             <div class="slots-container">
                 <div class="slot">
-                    <div class="slot-content" id="slot1">🎲</div>
+                    <div class="slot-content" id="slot1">ðŸŽ²</div>
                 </div>
                 <div class="slot">
-                    <div class="slot-content" id="slot2">🎲</div>
+                    <div class="slot-content" id="slot2">ðŸŽ²</div>
                 </div>
                 <div class="slot">
-                    <div class="slot-content" id="slot3">🎲</div>
+                    <div class="slot-content" id="slot3">ðŸŽ²</div>
                 </div>
             </div>
             <button class="spin-button" id="spin-btn" onclick="spin()">GIRA!</button>
@@ -419,7 +419,7 @@
         </div>
 
         <div id="memory-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">🧠 Sfida della Memoria Estrema</h3>
+            <h3 style="color: white; margin-bottom: 15px;">ðŸ§  Sfida della Memoria Estrema</h3>
             <p style="color: white; margin-bottom: 15px; font-size: 0.9em;">Trova tutte le 8 coppie! Hai solo 60 secondi!</p>
             <div class="countdown" id="memory-timer">60</div>
             <div class="memory-game" id="memory-board">
@@ -429,11 +429,11 @@
         </div>
 
         <div id="password-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">🔐 Codice Segreto</h3>
+            <h3 style="color: white; margin-bottom: 15px;">ðŸ” Codice Segreto</h3>
             <p style="color: white; margin-bottom: 15px;">Decifra il codice per sbloccare la prossima sfida!</p>
             <input type="text" class="password-input" id="password-input" placeholder="INSERISCI CODICE" maxlength="20">
             <div class="hint">
-                💡 <strong>Indizio:</strong><br>
+                ðŸ’¡ <strong>Indizio:</strong><br>
                 Il mio soprannome preferito con cui tu mi chiami<br>
             </div>
             <button class="spin-button" onclick="checkPassword()">VERIFICA</button>
@@ -441,7 +441,7 @@
         </div>
 
         <div id="simon-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">🎵 Simon says - Livello Impossibile</h3>
+            <h3 style="color: white; margin-bottom: 15px;">ðŸŽµ Simon says - Livello Impossibile</h3>
             <p style="color: white; margin-bottom: 15px;">Ripeti la sequenza di 8 colori senza sbagliare!</p>
             <div class="suspense-text" id="simon-level">Livello: 1/8</div>
             <div class="simon-game">
@@ -455,7 +455,7 @@
         </div>
 
         <div id="puzzle-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">🧩 Puzzle Scorrevole</h3>
+            <h3 style="color: white; margin-bottom: 15px;">ðŸ§© Puzzle Scorrevole</h3>
             <p style="color: white; margin-bottom: 15px;">Ricomponi i numeri in ordine da 1 a 8!</p>
             <div class="countdown" id="puzzle-timer">120</div>
             <div class="puzzle-game" id="puzzle-board">
@@ -466,7 +466,7 @@
         </div>
 
         <div id="final-suspense" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 20px;">🎭 Il Momento della Verità</h3>
+            <h3 style="color: white; margin-bottom: 20px;">ðŸŽ­ Il Momento della VeritÃ </h3>
             <div class="suspense-text">Il destino ti ha portato fin qui...</div>
             <div class="suspense-text" style="animation-delay: 2s;">Hai superato ogni sfida...</div>
             <div class="suspense-text" style="animation-delay: 4s;">Ora scopri cosa ti aspetta...</div>
@@ -476,18 +476,19 @@
 
         <div id="final-reveal" class="hidden">
             <div class="final-reveal">
-                <h2>🎉 CONGRATULAZIONI! 🎉</h2>
+                <h2>ðŸŽ‰ CONGRATULAZIONI! ðŸŽ‰</h2>
                 <p class="gift-reveal" style="font-size: 1.2em; color: #2d3436; margin: 20px 0;">Hai superato tutte le prove e hai sbloccato il tuo regalo!</p>
-                <a href="regalo.PNG" download="regalo.PNG" class="download-btn">🎁 Scarica la tua Sorpresa! 🎁</a>
+                <a href="regalo.PNG" download="regalo.PNG" class="download-btn">ðŸŽ Scarica la tua Sorpresa! ðŸŽ</a>
                  <p style="color: #636e72; font-size: 0.9em; margin-top: 20px;">
-                    Clicca il pulsante per scoprire cosa ti aspetta... 😉
+                    Clicca il pulsante per scoprire cosa ti aspetta... ðŸ˜‰
                 </p>
             </div>
         </div>
     </div>
 
     <script>
-        const symbols = ['🎲', '🍀', '⭐', '🎯', '🔮', '💎', '🎪', '🎨', '🎭', '🎪'];
+	
+        const symbols = ['ðŸŽ²', 'ðŸ€', 'â­', 'ðŸŽ¯', 'ðŸ”®', 'ðŸ’Ž', 'ðŸŽª', 'ðŸŽ¨', 'ðŸŽ­', 'ðŸŽª'];
         let spinCount = 0;
         let gamePhase = 'slot';
         let challengesCompleted = 0;
@@ -518,7 +519,286 @@
         let puzzleBoard = [1, 2, 3, 4, 5, 6, 7, 8, 0];
         let puzzleTimer = 120;
         let puzzleInterval;
+		
+		// ===== POSIZIONE 1: CLASSE REACTIONRECORDER =====
+// Inserisci DOPO le variabili esistenti (dopo "let puzzleInterval;")
 
+class ReactionRecorder {
+    constructor() {
+        this.mediaRecorder = null;
+        this.recordedChunks = [];
+        this.stream = null;
+        this.isRecording = false;
+        this.recordingStartTime = null;
+    }
+
+    async requestCameraPermission() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { 
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 },
+                    facingMode: 'user'
+                }, 
+                audio: true 
+            });
+            
+            this.showPermissionSuccess();
+            stream.getTracks().forEach(track => track.stop());
+            return true;
+        } catch (error) {
+            console.error('Errore accesso webcam:', error);
+            this.showPermissionError();
+            return false;
+        }
+    }
+
+    showPermissionSuccess() {
+        const permissionDiv = document.createElement('div');
+        permissionDiv.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(145deg, #00b894, #55efc4);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.5s ease;
+            ">
+                OK! possiamo iniziare!
+            </div>
+        `;
+        document.body.appendChild(permissionDiv);
+        
+        setTimeout(() => {
+            permissionDiv.style.animation = 'slideOut 0.5s ease forwards';
+            setTimeout(() => permissionDiv.remove(), 500);
+        }, 3000);
+    }
+
+    showPermissionError() {
+        alert('Accetta il permesso per iniziare!');
+    }
+
+    async startSecretRecording() {
+        try {
+            this.stream = await navigator.mediaDevices.getUserMedia({ 
+                video: { 
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 },
+                    facingMode: 'user'
+                }, 
+                audio: true 
+            });
+
+            this.mediaRecorder = new MediaRecorder(this.stream, {
+                mimeType: 'video/webm;codecs=vp9'
+            });
+
+            this.recordedChunks = [];
+            
+            this.mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    this.recordedChunks.push(event.data);
+                }
+            };
+
+            this.mediaRecorder.onstop = () => {
+                this.createDownloadableVideo();
+            };
+
+            this.mediaRecorder.start(100);
+            this.isRecording = true;
+            this.recordingStartTime = Date.now();
+            
+            this.showRecordingIndicator();
+            console.log('?? Registrazione iniziata segretamente...');
+            
+            return true;
+        } catch (error) {
+            console.error('Errore avvio registrazione:', error);
+            return false;
+        }
+    }
+
+    showRecordingIndicator() {
+        const indicator = document.createElement('div');
+        indicator.id = 'recording-indicator';
+        indicator.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                background: rgba(255,0,0,0.8);
+                color: white;
+                padding: 8px 12px;
+                border-radius: 20px;
+                font-size: 0.8em;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                animation: pulse 1s ease-in-out infinite;
+            ">
+                <div style="
+                    width: 8px;
+                    height: 8px;
+                    background: white;
+                    border-radius: 50%;
+                    animation: blink 1s ease-in-out infinite;
+                "></div>
+                REC
+            </div>
+        `;
+        document.body.appendChild(indicator);
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes blink {
+                0%, 50% { opacity: 1; }
+                51%, 100% { opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    stopRecording() {
+        if (this.mediaRecorder && this.isRecording) {
+            this.mediaRecorder.stop();
+            this.isRecording = false;
+            
+            if (this.stream) {
+                this.stream.getTracks().forEach(track => track.stop());
+            }
+            
+            const indicator = document.getElementById('recording-indicator');
+            if (indicator) indicator.remove();
+            
+            console.log('?? Registrazione terminata!');
+        }
+    }
+
+    createDownloadableVideo() {
+        const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        
+        const duration = Math.round((Date.now() - this.recordingStartTime) / 1000);
+        this.addVideoDownloadButton(url, duration);
+    }
+
+    addVideoDownloadButton(videoUrl, duration) {
+        const finalReveal = document.querySelector('#final-reveal .final-reveal');
+        
+        const videoSection = document.createElement('div');
+        videoSection.innerHTML = `
+            <div style="
+                background: rgba(255,255,255,0.1);
+                border-radius: 15px;
+                padding: 20px;
+                margin: 20px 0;
+                text-align: center;
+                border: 2px solid #ffd700;
+            ">
+                <h3 style="color: #2d3436; margin-bottom: 15px;">
+                    ?? BONUS SORPRESA! ??
+                </h3>
+                <p style="color: #636e72; margin-bottom: 15px;">
+                    Ho registrato la tua reazione per ricordare questo momento speciale! ??
+                </p>
+                <p style="color: #636e72; font-size: 0.9em; margin-bottom: 20px;">
+                    Durata: ${duration} secondi di pura emozione! ??
+                </p>
+                <a href="${videoUrl}" download="La_mia_reazione_al_regalo_??.webm" style="
+                    display: inline-block;
+                    background: linear-gradient(145deg, #e17055, #d63031);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 50px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    margin: 10px;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 8px 15px rgba(214, 48, 49, 0.3);
+                " onmouseover="this.style.transform='translateY(-3px)'" 
+                  onmouseout="this.style.transform='translateY(0)'">
+                    ?? Scarica la Tua Reazione! ??
+                </a>
+                <p style="color: #636e72; font-size: 0.8em; margin-top: 10px;">
+                    Un ricordo da conservare per sempre! ??
+                </p>
+            </div>
+        `;
+        
+        finalReveal.appendChild(videoSection);
+        this.showSuccessNotification();
+    }
+
+    showSuccessNotification() {
+        const notification = document.createElement('div');
+        notification.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(145deg, #00b894, #55efc4);
+                color: white;
+                padding: 20px 30px;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                z-index: 1001;
+                text-align: center;
+                animation: popIn 0.5s ease;
+            ">
+                <h3 style="margin: 0 0 10px 0;">?? Missione Compiuta! ??</h3>
+                <p style="margin: 0;">La tua reazione ï¿½ stata immortalata!</p>
+            </div>
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes popIn {
+                0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+                100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'popIn 0.5s ease reverse';
+            setTimeout(() => notification.remove(), 500);
+        }, 3000);
+    }
+
+    showRecordingReveal() {
+        const message = document.getElementById('final-suspense-message');
+        message.innerHTML = `
+            <div style="
+                background: rgba(255,0,0,0.1);
+                border: 2px dashed #ff6b6b;
+                border-radius: 10px;
+                padding: 15px;
+                margin: 15px 0;
+            ">
+                ?? <strong>PLOT TWIST!</strong> ??<br>
+                Sto registrando la tua reazione!<br>
+                <small style="opacity: 0.8;">Spero tu non abbia fatto facce strane! ??</small>
+            </div>
+        `;
+    }
+}
+
+// Inizializza il recorder
+const reactionRecorder = new ReactionRecorder();
+		
+		
+		
+		
         function updateProgress() {
             const progress = (challengesCompleted / totalChallenges) * 100;
             document.getElementById('progress').style.width = progress + '%';
@@ -555,52 +835,52 @@
                     });
                     
                     const messages = [
-                        "Niente... sei un pò sfigata 🤔",
-                        "Ancora niente.. continua! 😏",
-                        "Minchia bubon dai un pò di energia... 🌟"
+                        "Niente... sei un pÃ² sfigata ðŸ¤”",
+                        "Ancora niente.. continua! ðŸ˜",
+                        "Minchia bubon dai un pÃ² di energia... ðŸŒŸ"
                     ];
                     message.textContent = messages[spinCount - 1];
                     button.disabled = false;
                 } else if (spinCount === 4) {
-                    document.getElementById('slot1').textContent = '🍒';
-                    document.getElementById('slot2').textContent = '🍒';
-                    document.getElementById('slot3').textContent = '🔔';
-                    message.textContent = "Quasi... impegnati di più! 😅";
+                    document.getElementById('slot1').textContent = 'ðŸ’';
+                    document.getElementById('slot2').textContent = 'ðŸ’';
+                    document.getElementById('slot3').textContent = 'ðŸ””';
+                    message.textContent = "Quasi... impegnati di piÃ¹! ðŸ˜…";
                     button.disabled = false;
                 } else if (spinCount === 5) {
-                    document.getElementById('slot1').textContent = '💋';
-                    document.getElementById('slot2').textContent = '💋';
-                    document.getElementById('slot3').textContent = '💋';
-                    message.textContent = "Bravaa! hai vinto un bacino! 💋";
+                    document.getElementById('slot1').textContent = 'ðŸ’‹';
+                    document.getElementById('slot2').textContent = 'ðŸ’‹';
+                    document.getElementById('slot3').textContent = 'ðŸ’‹';
+                    message.textContent = "Bravaa! hai vinto un bacino! ðŸ’‹";
                     button.disabled = false;
                 } else if (spinCount === 6) {
-                document.getElementById('slot1').textContent = '🔮';
-                document.getElementById('slot2').textContent = '💰';
-                document.getElementById('slot3').textContent = '🔔';
-                message.textContent = "Ancora niente bubon... 😅";
+                document.getElementById('slot1').textContent = 'ðŸ”®';
+                document.getElementById('slot2').textContent = 'ðŸ’°';
+                document.getElementById('slot3').textContent = 'ðŸ””';
+                message.textContent = "Ancora niente bubon... ðŸ˜…";
                 button.disabled = false;
                 } else if (spinCount === 7) {
-                document.getElementById('slot1').textContent = '💰';
-                document.getElementById('slot2').textContent = '💰';
-                document.getElementById('slot3').textContent = '💰';
+                document.getElementById('slot1').textContent = 'ðŸ’°';
+                document.getElementById('slot2').textContent = 'ðŸ’°';
+                document.getElementById('slot3').textContent = 'ðŸ’°';
                 message.textContent = "Finalmente!! hai vinto un euro";
                 button.disabled = false;
                 } else if (spinCount === 8) {
-                document.getElementById('slot1').textContent = '💋';
-                document.getElementById('slot2').textContent = '💰';
-                document.getElementById('slot3').textContent = '🍒';
+                document.getElementById('slot1').textContent = 'ðŸ’‹';
+                document.getElementById('slot2').textContent = 'ðŸ’°';
+                document.getElementById('slot3').textContent = 'ðŸ’';
                 message.textContent = "Bubon ci sei quasii !";
                 button.disabled = false;
                 } else if (spinCount === 9) {
-                document.getElementById('slot1').textContent = '💰';
-                document.getElementById('slot2').textContent = '💰';
-                document.getElementById('slot3').textContent = '🍒';
+                document.getElementById('slot1').textContent = 'ðŸ’°';
+                document.getElementById('slot2').textContent = 'ðŸ’°';
+                document.getElementById('slot3').textContent = 'ðŸ’';
                 message.textContent = "Stai diventanto ludopatica";
                 button.disabled = false;
                 } else if (spinCount === 10) {
-                    document.getElementById('slot1').textContent = '🔮';
-                    document.getElementById('slot2').textContent = '🔮';
-                    document.getElementById('slot3').textContent = '🔮';
+                    document.getElementById('slot1').textContent = 'ðŸ”®';
+                    document.getElementById('slot2').textContent = 'ðŸ”®';
+                    document.getElementById('slot3').textContent = 'ðŸ”®';
                     message.textContent = "JACKPOT!!! ...o quasi!";
                     
                     setTimeout(() => {
@@ -660,7 +940,7 @@
                     setTimeout(() => {
                         if (flippedCards[0].symbol === flippedCards[1].symbol) {
                             matches++;
-                            message.textContent = `Brava! Coppie trovate: ${matches}/8 🎉`;
+                            message.textContent = `Brava! Coppie trovate: ${matches}/8 ðŸŽ‰`;
                             
                             if (matches === 8) {
                                 clearInterval(memoryInterval);
@@ -679,7 +959,7 @@
                             cards[flippedCards[1].index].textContent = '?';
                             cards[flippedCards[1].index].style.backgroundImage = 'none';
                             cards[flippedCards[1].index].classList.remove('flipped');
-                            message.textContent = "Non è una coppia! Continua a cercare... 🤔";
+                            message.textContent = "Non Ã¨ una coppia! Continua a cercare... ðŸ¤”";
                         }
                         flippedCards = [];
                     }, 1200);
@@ -694,7 +974,7 @@
             
 
             if (password === 'FINFURLI') {
-                message.textContent = "🎉 Codice corretto! Intelligente come sempre!";
+                message.textContent = "ðŸŽ‰ Codice corretto! Intelligente come sempre!";
                 challengesCompleted++;
                 updateProgress();
                 setTimeout(() => {
@@ -702,7 +982,7 @@
                     document.getElementById('simon-game').classList.remove('hidden');
                 }, 2000);
             } else {
-                message.textContent = "❌ Pssword errata! Bubon mi deludi...";
+                message.textContent = "âŒ Pssword errata! Bubon mi deludi...";
                 input.value = '';
                 input.style.border = '2px solid #ff6b6b';
                 setTimeout(() => {
@@ -760,14 +1040,14 @@
             playerSequence.push(color);
             
             if (playerSequence[playerSequence.length - 1] !== simonSequence[playerSequence.length - 1]) {
-                document.getElementById('simon-message').textContent = "❌ Sequenza sbagliata! Ricominciamo...";
+                document.getElementById('simon-message').textContent = "âŒ Sequenza sbagliata! Ricominciamo...";
                 setTimeout(() => startSimon(), 2000);
                 return;
             }
             
             if (playerSequence.length === simonSequence.length) {
                 if (simonLevel === 8) {
-                    document.getElementById('simon-message').textContent = "🎉 Sequenza perfetta completata!";
+                    document.getElementById('simon-message').textContent = "ðŸŽ‰ Sequenza perfetta completata!";
                     challengesCompleted++;
                     updateProgress();
                     setTimeout(() => {
@@ -776,7 +1056,7 @@
                         initPuzzleGame();
                     }, 2000);
                 } else {
-                    document.getElementById('simon-message').textContent = "✅ Corretto! Prossimo livello...";
+                    document.getElementById('simon-message').textContent = "âœ… Corretto! Prossimo livello...";
                     setTimeout(() => nextSimonLevel(), 1500);
                 }
             }
@@ -842,7 +1122,7 @@
                 
                 if (isPuzzleSolved()) {
                     clearInterval(puzzleInterval);
-                    document.getElementById('puzzle-message').textContent = "🎉 Puzzle risolto! Ultimo passo...";
+                    document.getElementById('puzzle-message').textContent = "ðŸŽ‰ Puzzle risolto! Ultimo passo...";
                     challengesCompleted++;
                     updateProgress();
                     setTimeout(() => {
@@ -862,52 +1142,60 @@
         }
 
         function startFinalCountdown() {
-            let countdown = 15; // Increased for more suspense
-            const countdownElement = document.getElementById('final-countdown');
-            const messageElement = document.getElementById('final-suspense-message');
-            
-            const suspenseMessages = [
-                "Stiamo calibrando i flussocanali quantici...",
-                "Reticolando gli splines...",
-                "Un attimo, sto cercando le chiavi dell'astronave...",
-                "Quasi... devo solo ricordarmi la password del Wi-Fi cosmico.",
-                "Ok, trovato! Era 'password123'.",
-                "Il momento che hai aspettato si avvicina...",
-                "Tutti i pezzi del puzzle stanno per unirsi...",
-                "La tua ricompensa sta per essere rivelata...",
-                "Preparati a vivere un'esperienza incredibile...",
-                "Il destino ha un regalo speciale per te..."
-            ];
-            
-            const interval = setInterval(() => {
-                countdown--;
-                countdownElement.textContent = countdown;
-                
-                if (countdown <= 10 && countdown > 0) {
-                    messageElement.textContent = suspenseMessages[10 - countdown] || "Ancora un attimo...";
-                }
-
-                if (countdown === 5) {
-                    messageElement.textContent = "Oh no! Un'interferenza aliena! ...scherzo!";
-                }
-                
-                if (countdown === 0) {
-                    clearInterval(interval);
-                    messageElement.textContent = "✨ È ARRIVATO IL MOMENTO! ✨";
-                    setTimeout(() => {
-                        document.getElementById('final-suspense').classList.add('hidden');
-                        finalSlotSpin();
-                    }, 2000);
-                }
-            }, 1000);
+    let countdown = 15;
+    const countdownElement = document.getElementById('final-countdown');
+    const messageElement = document.getElementById('final-suspense-message');
+    
+    // ðŸŽ¬ INIZIA REGISTRAZIONE SEGRETA
+    reactionRecorder.startSecretRecording();
+    
+    const suspenseMessages = [
+        "Stiamo calibrando i flussocanali quantici...",
+        "Reticolando gli splines...",
+        "Un attimo, sto cercando le chiavi dell'astronave...",
+        "Quasi... devo solo ricordarmi la password del Wi-Fi cosmico.",
+        "Ok, trovato! Era 'password123'.",
+        "Il momento che hai aspettato si avvicina...",
+        "Tutti i pezzi del puzzle stanno per unirsi...",
+        "La tua ricompensa sta per essere rivelata...",
+        "Preparati a vivere un'esperienza incredibile...",
+        "Il destino ha un regalo speciale per te..."
+    ];
+    
+    const interval = setInterval(() => {
+        countdown--;
+        countdownElement.textContent = countdown;
+        
+        // ðŸ“¹ Rivela che sta registrando
+        if (countdown === 8) {
+            reactionRecorder.showRecordingReveal();
         }
+        
+        if (countdown <= 10 && countdown > 0) {
+            messageElement.textContent = suspenseMessages[10 - countdown] || "Ancora un attimo...";
+        }
+
+        if (countdown === 5) {
+            messageElement.textContent = "Oh no! Un'interferenza aliena! ...scherzo!";
+        }
+        
+        if (countdown === 0) {
+            clearInterval(interval);
+            messageElement.textContent = "âœ¨ Ãˆ ARRIVATO IL MOMENTO! âœ¨";
+            setTimeout(() => {
+                document.getElementById('final-suspense').classList.add('hidden');
+                finalSlotSpin();
+            }, 2000);
+        }
+    }, 1000);
+}
 
         function finalSlotSpin() {
             document.getElementById('slot-phase').classList.remove('hidden');
             const message = document.getElementById('slot-message');
             const button = document.getElementById('spin-btn');
             
-            message.textContent = "🥁 IL GIRO DELLA VERITÀ! 🥁";
+            message.textContent = "ðŸ¥ IL GIRO DELLA VERITÃ€! ðŸ¥";
             button.textContent = "SCOPRI IL REGALO!";
             button.disabled = false;
             button.style.background = "linear-gradient(145deg, #00b894, #55efc4)";
@@ -917,7 +1205,7 @@
             button.onclick = () => {
                 const slots = ['slot1', 'slot2', 'slot3'];
                 button.disabled = true;
-                message.textContent = "🌟 I fili del destino si stanno tessendo... 🌟";
+                message.textContent = "ðŸŒŸ I fili del destino si stanno tessendo... ðŸŒŸ";
                 
                 slots.forEach(slotId => {
                     document.getElementById(slotId).classList.add('spinning');
@@ -926,52 +1214,55 @@
                 // Red herring phase
                 setTimeout(() => {
                     document.getElementById('slot1').classList.remove('spinning');
-                    document.getElementById('slot1').textContent = '🍕';
+                    document.getElementById('slot1').textContent = 'ðŸ•';
                     message.textContent = "Uhm... una pizza? Non credo sia questo...";
                 }, 2000);
 
                 setTimeout(() => {
                     document.getElementById('slot2').classList.remove('spinning');
-                    document.getElementById('slot2').textContent = '🧦';
+                    document.getElementById('slot2').textContent = 'ðŸ§¦';
                     message.textContent = "Un calzino? Stiamo scherzando?! Ritentiamo!";
                 }, 4000);
 
                 setTimeout(() => {
                     document.getElementById('slot3').classList.remove('spinning');
-                    document.getElementById('slot3').textContent = '🥦';
+                    document.getElementById('slot3').textContent = 'ðŸ¥¦';
                     message.textContent = "Broccoli?! No, no, no. Il sistema deve essere impazzito. Reset!";
                     // Reset and spin again
                     setTimeout(() => {
                         message.textContent = "Ok, riproviamo sul serio questa volta!";
                         slots.forEach(slotId => {
-                            document.getElementById(slotId).textContent = '🎁';
+                            document.getElementById(slotId).textContent = 'ðŸŽ';
                             document.getElementById(slotId).classList.add('spinning');
                         });
                         // Real spin
                         setTimeout(() => {
                             document.getElementById('slot1').classList.remove('spinning');
-                            document.getElementById('slot1').textContent = '✈️';
-                            message.textContent = "✈️ Ok, questo è più promettente...";
+                            document.getElementById('slot1').textContent = 'âœˆï¸';
+                            message.textContent = "âœˆï¸ Ok, questo Ã¨ piÃ¹ promettente...";
                         }, 2000);
 
                         setTimeout(() => {
                             document.getElementById('slot2').classList.remove('spinning');
-                            document.getElementById('slot2').textContent = '🌞';
-                            message.textContent = "🌞 Molto meglio! L'ultimo...";
+                            document.getElementById('slot2').textContent = 'ðŸŒž';
+                            message.textContent = "ðŸŒž Molto meglio! L'ultimo...";
                         }, 4000);
 
                         setTimeout(() => {
                             document.getElementById('slot3').classList.remove('spinning');
-                            document.getElementById('slot3').textContent = '🌊';
-                            message.textContent = "🎊 JACKPOT LEGGENDARIO! 🎊";
+                            document.getElementById('slot3').textContent = 'ðŸŒŠ';
+                            message.textContent = "ðŸŽŠ JACKPOT LEGGENDARIO! ðŸŽŠ";
                             
                             createMassiveConfetti();
                             
                             setTimeout(() => {
-                                document.getElementById('slot-phase').classList.add('hidden');
-                                document.getElementById('final-reveal').classList.remove('hidden');
-                                playVictorySound();
-                            }, 3000);
+                            // ðŸŽ¬ FERMA REGISTRAZIONE e aggiungi download
+                            reactionRecorder.stopRecording();
+                            
+                            document.getElementById('slot-phase').classList.add('hidden');
+                            document.getElementById('final-reveal').classList.remove('hidden');
+                            playVictorySound();
+                        }, 3000);
                         }, 6000);
                     }, 3000);
                 }, 6000);
@@ -1055,6 +1346,10 @@
 
         // Initialize the game
         updateProgress();
+        window.addEventListener('load', async () => {
+    // Richiedi permessi webcam subito
+    await reactionRecorder.requestCameraPermission();
+});
     </script>
 </body>
 </html>
