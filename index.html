@@ -682,17 +682,62 @@ class ReactionRecorder {
     }
 
     createDownloadableVideo() {
+    console.log('🎬 Creando video scaricabile...');
+    console.log('Chunks disponibili:', this.recordedChunks.length);
+    
+    if (this.recordedChunks.length === 0) {
+        console.error('❌ Nessun chunk video disponibile!');
+        
+        // Mostra messaggio di errore all'utente
+        const placeholder = document.getElementById('video-download-placeholder');
+        if (placeholder) {
+            placeholder.innerHTML = `
+                <div style="color: #e17055; padding: 15px;">
+                    ⚠️ Errore nella registrazione del video<br>
+                    <small>Riprova ricaricando la pagina</small>
+                </div>
+            `;
+        }
+        return;
+    }
+    
+    try {
         const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
         const url = URL.createObjectURL(blob);
         
-        const duration = Math.round((Date.now() - this.recordingStartTime) / 1000);
+        // Calcola durata
+        const duration = this.recordingStartTime ? 
+            Math.round((Date.now() - this.recordingStartTime) / 1000) : 0;
+        
+        console.log('✅ Video creato con successo!');
+        console.log('📊 Dimensione blob:', blob.size, 'bytes');
+        console.log('⏱️ Durata:', duration, 'secondi');
+        
+        // Chiama il metodo per aggiungere il download
         this.addVideoDownloadButton(url, duration);
+        
+    } catch (error) {
+        console.error('❌ Errore creazione video:', error);
+        
+        // Mostra errore all'utente
+        const placeholder = document.getElementById('video-download-placeholder');
+        if (placeholder) {
+            placeholder.innerHTML = `
+                <div style="color: #e17055; padding: 15px;">
+                    ⚠️ Errore nella creazione del video<br>
+                    <small>${error.message}</small>
+                </div>
+            `;
+        }
     }
+}
 
     addVideoDownloadButton(videoUrl, duration) {
+    // Cerca il placeholder che è stato creato da addVideoDownloadSection()
     const placeholder = document.getElementById('video-download-placeholder');
     
     if (placeholder) {
+        // Sostituisci il placeholder con il pulsante di download
         placeholder.innerHTML = `
             <a href="${videoUrl}" download="La_mia_reazione_al_regalo_❤️.webm" style="
                 display: inline-block;
@@ -712,11 +757,77 @@ class ReactionRecorder {
                 La tua espressione quando hai visto il regalo! 😍
             </p>
         `;
+        
+        console.log('✅ Pulsante download aggiunto con successo!');
+    } else {
+        // Fallback: se non trova il placeholder, crea una sezione separata
+        console.log('⚠️ Placeholder non trovato, creo sezione separata');
+        
+        const finalReveal = document.querySelector('#gift-photo-reveal');
+        if (finalReveal) {
+            const videoSection = document.createElement('div');
+            videoSection.innerHTML = `
+                <div style="
+                    background: rgba(255,255,255,0.1);
+                    border-radius: 15px;
+                    padding: 20px;
+                    margin: 20px 0;
+                    text-align: center;
+                    border: 2px solid #ffd700;
+                    backdrop-filter: blur(10px);
+                ">
+                    <h3 style="color: #2d3436; margin-bottom: 15px;">
+                        📹 VIDEO DELLA TUA REAZIONE! 📹
+                    </h3>
+                    <a href="${videoUrl}" download="La_mia_reazione_al_regalo_❤️.webv" style="
+                        display: inline-block;
+                        background: linear-gradient(145deg, #e17055, #d63031);
+                        color: white;
+                        padding: 15px 25px;
+                        border-radius: 50px;
+                        text-decoration: none;
+                        font-weight: bold;
+                        transition: all 0.3s ease;
+                        box-shadow: 0 8px 15px rgba(214, 48, 49, 0.3);
+                    " onmouseover="this.style.transform='translateY(-3px)'" 
+                      onmouseout="this.style.transform='translateY(0)'">
+                        🎬 Scarica Video (${duration}s)! 🎬
+                    </a>
+                    <p style="color: #636e72; font-size: 0.8em; margin-top: 10px;">
+                        ${duration} secondi di pura emozione! 💕
+                    </p>
+                </div>
+            `;
+            finalReveal.appendChild(videoSection);
+        }
     }
     
+    // Mostra notifica di successo
     this.showSuccessNotification();
 }
-
+debugVideoCreation() {
+    console.log('🔍 Debug Video Creation:');
+    console.log('- Recorded chunks:', this.recordedChunks.length);
+    console.log('- Recording start time:', this.recordingStartTime);
+    console.log('- Is recording:', this.isRecording);
+    
+    if (this.recordedChunks.length > 0) {
+        console.log('✅ Ci sono chunks registrati');
+        
+        // Test manuale creazione video
+        const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        const duration = Math.round((Date.now() - this.recordingStartTime) / 1000);
+        
+        console.log('📹 Video URL creato:', url);
+        console.log('⏱️ Durata calcolata:', duration + 's');
+        
+        // Forza la creazione del download
+        this.addVideoDownloadButton(url, duration);
+    } else {
+        console.log('❌ Nessun chunk registrato!');
+    }
+}
     showSuccessNotification() {
         const notification = document.createElement('div');
         notification.innerHTML = `
