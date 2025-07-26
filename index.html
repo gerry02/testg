@@ -1,3 +1,302 @@
+prendi queste modifiche e inbseriscile nel mio codice compelto:
+MODiFICHE:
+// ===== OTTIMIZZAZIONE MEMORY GAME PER MOBILE =====
+
+// 1. PRECARICAMENTO IMMAGINI - Aggiungi questo SUBITO DOPO le variabili esistenti:
+let preloadedImages = new Map(); // Cache delle immagini precaricate
+let imagesPreloaded = false;
+
+// 2. FUNZIONE DI PRECARICAMENTO - Aggiungi questa nuova funzione:
+function preloadMemoryImages() {
+    return new Promise((resolve) => {
+        const imageNames = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png'];
+        let loadedCount = 0;
+        const totalImages = imageNames.length;
+        
+        console.log('🖼️ Precaricamento immagini memory game...');
+        
+        // Mostra indicatore di caricamento
+        showPreloadIndicator();
+        
+        imageNames.forEach(imageName => {
+            const img = new Image();
+            
+            img.onload = () => {
+                preloadedImages.set(imageName, img.src);
+                loadedCount++;
+                
+                // Aggiorna progresso
+                updatePreloadProgress(loadedCount, totalImages);
+                
+                if (loadedCount === totalImages) {
+                    imagesPreloaded = true;
+                    hidePreloadIndicator();
+                    console.log('✅ Tutte le immagini precaricate!');
+                    resolve();
+                }
+            };
+            
+            img.onerror = () => {
+                console.log(`⚠️ Errore caricamento ${imageName}, uso fallback`);
+                // Usa emoji come fallback
+                const fallbackEmojis = ['🎮', '🎯', '🎪', '🎨', '🎭', '🎲', '🍀', '⭐'];
+                preloadedImages.set(imageName, fallbackEmojis[imageNames.indexOf(imageName)]);
+                loadedCount++;
+                
+                updatePreloadProgress(loadedCount, totalImages);
+                
+                if (loadedCount === totalImages) {
+                    imagesPreloaded = true;
+                    hidePreloadIndicator();
+                    resolve();
+                }
+            };
+            
+            // Inizia il caricamento
+            img.src = imageName;
+        });
+    });
+}
+
+// 3. INDICATORI DI CARICAMENTO - Aggiungi queste funzioni:
+function showPreloadIndicator() {
+    const indicator = document.createElement('div');
+    indicator.id = 'preload-indicator';
+    indicator.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            z-index: 9999;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        ">
+            <div style="font-size: 1.2em; margin-bottom: 15px;">
+                🎮 Preparando il gioco...
+            </div>
+            <div id="preload-progress-bar" style="
+                width: 200px;
+                height: 8px;
+                background: rgba(255,255,255,0.2);
+                border-radius: 4px;
+                overflow: hidden;
+                margin: 10px 0;
+            ">
+                <div id="preload-progress-fill" style="
+                    height: 100%;
+                    background: linear-gradient(90deg, #00b894, #55efc4);
+                    width: 0%;
+                    transition: width 0.3s ease;
+                "></div>
+            </div>
+            <div id="preload-status" style="font-size: 0.9em; opacity: 0.8;">
+                Caricamento immagini...
+            </div>
+        </div>
+    `;
+    document.body.appendChild(indicator);
+}
+
+function updatePreloadProgress(loaded, total) {
+    const progressFill = document.getElementById('preload-progress-fill');
+    const status = document.getElementById('preload-status');
+    
+    if (progressFill && status) {
+        const percentage = (loaded / total) * 100;
+        progressFill.style.width = percentage + '%';
+        status.textContent = `${loaded}/${total} immagini caricate`;
+    }
+}
+
+function hidePreloadIndicator() {
+    const indicator = document.getElementById('preload-indicator');
+    if (indicator) {
+        indicator.style.animation = 'fadeOut 0.5s ease forwards';
+        setTimeout(() => indicator.remove(), 500);
+    }
+    
+    // Aggiungi CSS per animazione
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// 4. MODIFICA loadMemoryImages - SOSTITUISCI la funzione esistente:
+function loadMemoryImages() {
+    if (!imagesPreloaded) {
+        console.log('⚠️ Immagini non ancora precaricate, uso emoji fallback');
+        // Usa emoji come fallback immediato
+        const fallbackEmojis = ['🎮', '🎯', '🎪', '🎨', '🎭', '🎲', '🍀', '⭐'];
+        memoryImages = [...fallbackEmojis, ...fallbackEmojis];
+        return;
+    }
+    
+    const imageNames = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png'];
+    memoryImages = [...imageNames, ...imageNames]; // Create pairs
+}
+
+// 5. MODIFICA initMemoryGame - SOSTITUISCI la funzione esistente:
+function initMemoryGame() {
+    loadMemoryImages();
+    memoryCards = shuffleArray([...memoryImages]);
+    flippedCards = [];
+    matches = 0;
+    memoryTimer = 60;
+    
+    const board = document.getElementById('memory-board');
+    board.innerHTML = '';
+    
+    for (let i = 0; i < 16; i++) {
+        const card = document.createElement('button');
+        card.className = 'memory-card';
+        card.textContent = '?';
+        card.onclick = () => flipCard(i);
+        
+        // Pre-imposta il background per evitare lag su mobile
+        if (preloadedImages.has(memoryCards[i])) {
+            card.setAttribute('data-image', memoryCards[i]);
+            // Precarica il background (nascosto)
+            card.style.backgroundImage = `url('${preloadedImages.get(memoryCards[i])}')`;
+            card.style.backgroundSize = 'cover';
+            card.style.backgroundPosition = 'center';
+            card.style.backgroundRepeat = 'no-repeat';
+            // Nascondilo inizialmente
+            card.style.backgroundImage = 'none';
+        }
+        
+        board.appendChild(card);
+    }
+
+    memoryInterval = setInterval(() => {
+        memoryTimer--;
+        document.getElementById('memory-timer').textContent = memoryTimer;
+        
+        if (memoryTimer <= 0) {
+            clearInterval(memoryInterval);
+            document.getElementById('memory-message').textContent = "Tempo scaduto! Riprova!";
+            setTimeout(() => initMemoryGame(), 2000);
+        }
+    }, 1000);
+}
+
+// 6. MODIFICA flipCard - SOSTITUISCI la funzione esistente:
+function flipCard(index) {
+    const cards = document.querySelectorAll('.memory-card');
+    const card = cards[index];
+    const message = document.getElementById('memory-message');
+
+    if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+        card.textContent = '';
+        
+        // Usa immagine precaricata o emoji fallback
+        const imageKey = memoryCards[index];
+        if (preloadedImages.has(imageKey)) {
+            const imageSrc = preloadedImages.get(imageKey);
+            if (imageSrc.startsWith('http') || imageSrc.endsWith('.png')) {
+                // È un'immagine vera
+                card.style.backgroundImage = `url('${imageSrc}')`;
+            } else {
+                // È un emoji fallback
+                card.textContent = imageSrc;
+                card.style.fontSize = '2em';
+            }
+        } else {
+            // Fallback emoji
+            const fallbackEmojis = ['🎮', '🎯', '🎪', '🎨', '🎭', '🎲', '🍀', '⭐'];
+            const emojiIndex = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png'].indexOf(imageKey);
+            card.textContent = fallbackEmojis[emojiIndex] || '🎮';
+            card.style.fontSize = '2em';
+        }
+        
+        card.classList.add('flipped');
+        flippedCards.push({ index, symbol: memoryCards[index] });
+
+        if (flippedCards.length === 2) {
+            setTimeout(() => {
+                if (flippedCards[0].symbol === flippedCards[1].symbol) {
+                    matches++;
+                    message.textContent = `Brava! Coppie trovate: ${matches}/8 🎉`;
+                    
+                    if (matches === 8) {
+                        clearInterval(memoryInterval);
+                        challengesCompleted++;
+                        updateProgress();
+                        message.textContent = "Memoria incredibile! Prossima sfida in arrivo...";
+                        setTimeout(() => {
+                            document.getElementById('memory-game').classList.add('hidden');
+                            document.getElementById('password-game').classList.remove('hidden');
+                        }, 2000);
+                    }
+                } else {
+                    // Reset delle carte
+                    const card1 = cards[flippedCards[0].index];
+                    const card2 = cards[flippedCards[1].index];
+                    
+                    card1.textContent = '?';
+                    card1.style.backgroundImage = 'none';
+                    card1.style.fontSize = '';
+                    card1.classList.remove('flipped');
+                    
+                    card2.textContent = '?';
+                    card2.style.backgroundImage = 'none';
+                    card2.style.fontSize = '';
+                    card2.classList.remove('flipped');
+                    
+                    message.textContent = "Non è una coppia! Continua a cercare... 🤔";
+                }
+                flippedCards = [];
+            }, 1200);
+        }
+    }
+}
+
+// 7. INIZIALIZZAZIONE PRECOCE - MODIFICA il window.addEventListener esistente:
+window.addEventListener('load', async () => {
+    // Prima precarica le immagini
+    await preloadMemoryImages();
+    
+    // Poi richiedi permessi webcam
+    await reactionRecorder.requestCameraPermission();
+});
+
+// 8. CSS AGGIUNTIVO PER MOBILE - Aggiungi questo CSS:
+const mobileOptimizationCSS = document.createElement('style');
+mobileOptimizationCSS.textContent = `
+    /* Ottimizzazioni per mobile */
+    @media (max-width: 480px) {
+        .memory-card {
+            /* Disabilita effetti pesanti su mobile */
+            transition: transform 0.2s ease !important;
+            will-change: transform;
+        }
+        
+        .memory-card:hover {
+            /* Riduce effetti hover su mobile */
+            transform: scale(1.02) !important;
+        }
+        
+        /* Precaricamento immagini per GPU */
+        .memory-card {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+    }
+`;
+document.head.appendChild(mobileOptimizationCSS);
+
+CODICE COMPELTO:
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
