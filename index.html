@@ -921,13 +921,26 @@ const reactionRecorder = new ReactionRecorder();
                 document.getElementById('slot3').textContent = '🍒';
                 message.textContent = "Bubon ci sei quasii !";
                 button.disabled = false;
-                } else if (spinCount === 9) {
+                }else if (spinCount === 9) {
+                // 1) mostra i 3 mazzi di fiori come emoji
+                document.getElementById('slot1').textContent = '💐';
+                document.getElementById('slot2').textContent = '💐';
+                document.getElementById('slot3').textContent = '💐';
+                message.textContent = "BRAVISSIMA BUBON HAI VINTO UN MAZZO DI FIORI... 🌸";
+
+                button.disabled = true;
+
+                // 2) dopo 2 secondi, mostra il bouquet digitale + testo + pulsante download
+                setTimeout(() => {
+                    showDigitalBouquet();
+                }, 2000);
+                } else if (spinCount === 10) {
                 document.getElementById('slot1').textContent = '💰';
                 document.getElementById('slot2').textContent = '💰';
                 document.getElementById('slot3').textContent = '🍒';
                 message.textContent = "Stai diventanto ludopatica";
                 button.disabled = false;
-                } else if (spinCount === 10) {
+                } else if (spinCount === 11) {
                     document.getElementById('slot1').textContent = '🔮';
                     document.getElementById('slot2').textContent = '🔮';
                     document.getElementById('slot3').textContent = '🔮';
@@ -941,7 +954,56 @@ const reactionRecorder = new ReactionRecorder();
                 }
             }, 3000);
         }
+        function showDigitalBouquet() {
+    // container principale
+            const overlay = document.createElement('div');
+            overlay.id = 'digital-bouquet-overlay';
+            overlay.style = `
+                position: fixed; top:0; left:0; width:100%; height:100%;
+                background: rgba(0,0,0,0.8); display:flex;
+                justify-content:center; align-items:center; z-index:10000;
+                flex-direction:column; padding:20px;
+            `;
+            // immagine grande (sostituisci 'bouquet.png' con il tuo file)
+            const img = document.createElement('img');
+            img.src = 'bouquet.png';
+            img.alt = 'Mazzo di fiori digitale';
+            img.style = 'max-width:80%; border-radius:10px; box-shadow:0 0 20px rgba(255,255,255,0.5);';
+            // testo
+            const p = document.createElement('p');
+            p.textContent = "Non saranno i fiori che vuoi tu, però almeno questi non moriranno mai 🌹";
+            p.style = 'color:white; font-size:1.4em; margin:20px; text-align:center;';
+            // pulsante download
+            const btn = document.createElement('a');
+            btn.href = img.src;
+            btn.download = 'mazzo_digitale.png';
+            btn.textContent = '📥 Scarica il tuo mazzo digitale';
+            btn.style = `
+                display:inline-block; background:#55efc4; color:#2d3436;
+                padding:15px 25px; border-radius:50px; text-decoration:none;
+                font-size:1.2em; font-weight:bold; box-shadow:0 8px 15px rgba(0,0,0,0.2);
+            `;
+            btn.onclick = () => {
+                // dopo il download, togli l'overlay e riattiva il pulsante spin
+                setTimeout(removeDigitalBouquet, 100);
+            };
 
+            overlay.appendChild(img);
+            overlay.appendChild(p);
+            overlay.appendChild(btn);
+            document.body.appendChild(overlay);
+        }
+
+        /** Rimuove l'overlay e riporta la roulette al flusso normale */
+        function removeDigitalBouquet() {
+            const overlay = document.getElementById('digital-bouquet-overlay');
+            if (overlay) overlay.remove();
+            // riattiva il pulsante
+            const btn = document.getElementById('spin-btn');
+            btn.disabled = false;
+            // e riprendi la roulette: si potrebbe anche automaticamente
+            // chiamare spin() o lasciare che l'utente prema di nuovo "GIRA!"
+}
         function initMemoryGame() {
             loadMemoryImages();
             memoryCards = shuffleArray([...memoryImages]);
