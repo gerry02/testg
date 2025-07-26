@@ -397,18 +397,18 @@
 </head>
 <body>
     <div class="container">
-        <h1>Buon Compleanno!     Bubon ðŸŽðŸŽ</h1>
+        <h1>Buon Compleanno!     Bubon 🎁🎁</h1>
         
         <div id="slot-phase" class="slot-machine">
             <div class="slots-container">
                 <div class="slot">
-                    <div class="slot-content" id="slot1">ðŸŽ²</div>
+                    <div class="slot-content" id="slot1">🎲</div>
                 </div>
                 <div class="slot">
-                    <div class="slot-content" id="slot2">ðŸŽ²</div>
+                    <div class="slot-content" id="slot2">🎲</div>
                 </div>
                 <div class="slot">
-                    <div class="slot-content" id="slot3">ðŸŽ²</div>
+                    <div class="slot-content" id="slot3">🎲</div>
                 </div>
             </div>
             <button class="spin-button" id="spin-btn" onclick="spin()">GIRA!</button>
@@ -419,7 +419,7 @@
         </div>
 
         <div id="memory-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">ðŸ§  Sfida della Memoria Estrema</h3>
+            <h3 style="color: white; margin-bottom: 15px;">🧠 Sfida della Memoria Estrema</h3>
             <p style="color: white; margin-bottom: 15px; font-size: 0.9em;">Trova tutte le 8 coppie! Hai solo 60 secondi!</p>
             <div class="countdown" id="memory-timer">60</div>
             <div class="memory-game" id="memory-board">
@@ -429,11 +429,11 @@
         </div>
 
         <div id="password-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">ðŸ” Codice Segreto</h3>
+            <h3 style="color: white; margin-bottom: 15px;">🔐 Codice Segreto</h3>
             <p style="color: white; margin-bottom: 15px;">Decifra il codice per sbloccare la prossima sfida!</p>
             <input type="text" class="password-input" id="password-input" placeholder="INSERISCI CODICE" maxlength="20">
             <div class="hint">
-                ðŸ’¡ <strong>Indizio:</strong><br>
+                💡 <strong>Indizio:</strong><br>
                 Il mio soprannome preferito con cui tu mi chiami<br>
             </div>
             <button class="spin-button" onclick="checkPassword()">VERIFICA</button>
@@ -441,7 +441,7 @@
         </div>
 
         <div id="simon-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">ðŸŽµ Simon says - Livello Impossibile</h3>
+            <h3 style="color: white; margin-bottom: 15px;">🎵 Simon says - Livello Impossibile</h3>
             <p style="color: white; margin-bottom: 15px;">Ripeti la sequenza di 8 colori senza sbagliare!</p>
             <div class="suspense-text" id="simon-level">Livello: 1/8</div>
             <div class="simon-game">
@@ -455,7 +455,7 @@
         </div>
 
         <div id="puzzle-game" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 15px;">ðŸ§© Puzzle Scorrevole</h3>
+            <h3 style="color: white; margin-bottom: 15px;">🧩 Puzzle Scorrevole</h3>
             <p style="color: white; margin-bottom: 15px;">Ricomponi i numeri in ordine da 1 a 8!</p>
             <div class="countdown" id="puzzle-timer">120</div>
             <div class="puzzle-game" id="puzzle-board">
@@ -466,7 +466,7 @@
         </div>
 
         <div id="final-suspense" class="minigame hidden">
-            <h3 style="color: white; margin-bottom: 20px;">ðŸŽ­ Il Momento della VeritÃ </h3>
+            <h3 style="color: white; margin-bottom: 20px;">🎭 Il Momento della Verità</h3>
             <div class="suspense-text">Il destino ti ha portato fin qui...</div>
             <div class="suspense-text" style="animation-delay: 2s;">Hai superato ogni sfida...</div>
             <div class="suspense-text" style="animation-delay: 4s;">Ora scopri cosa ti aspetta...</div>
@@ -476,11 +476,11 @@
 
         <div id="final-reveal" class="hidden">
             <div class="final-reveal">
-                <h2>ðŸŽ‰ CONGRATULAZIONI! ðŸŽ‰</h2>
+                <h2>🎉 CONGRATULAZIONI! 🎉</h2>
                 <p class="gift-reveal" style="font-size: 1.2em; color: #2d3436; margin: 20px 0;">Hai superato tutte le prove e hai sbloccato il tuo regalo!</p>
-                <a href="regalo.PNG" download="regalo.PNG" class="download-btn">ðŸŽ Scarica la tua Sorpresa! ðŸŽ</a>
+                <a href="regalo.PNG" download="regalo.PNG" class="download-btn">🎁 Scarica la tua Sorpresa! 🎁</a>
                  <p style="color: #636e72; font-size: 0.9em; margin-top: 20px;">
-                    Clicca il pulsante per scoprire cosa ti aspetta... ðŸ˜‰
+                    Clicca il pulsante per scoprire cosa ti aspetta... 😉
                 </p>
             </div>
         </div>
@@ -488,7 +488,7 @@
 
     <script>
 	
-        const symbols = ['ðŸŽ²', 'ðŸ€', 'â­', 'ðŸŽ¯', 'ðŸ”®', 'ðŸ’Ž', 'ðŸŽª', 'ðŸŽ¨', 'ðŸŽ­', 'ðŸŽª'];
+        const symbols = ['🎲', '🍀', '⭐', '🎯', '🔮', '💎', '🎪', '🎨', '🎭', '🎪'];
         let spinCount = 0;
         let gamePhase = 'slot';
         let challengesCompleted = 0;
@@ -640,18 +640,18 @@ class ReactionRecorder {
     }
 
     createDownloadableVideo() {
-    console.log('ðŸŽ¬ Creando video scaricabile...');
+    console.log('🎬 Creando video scaricabile...');
     console.log('Chunks disponibili:', this.recordedChunks.length);
     
     if (this.recordedChunks.length === 0) {
-        console.error('âŒ Nessun chunk video disponibile!');
+        console.error('❌ Nessun chunk video disponibile!');
         
         // Mostra messaggio di errore all'utente
         const placeholder = document.getElementById('video-download-placeholder');
         if (placeholder) {
             placeholder.innerHTML = `
                 <div style="color: #e17055; padding: 15px;">
-                    âš ï¸ Errore nella registrazione del video<br>
+                    ⚠️ Errore nella registrazione del video<br>
                     <small>Riprova ricaricando la pagina</small>
                 </div>
             `;
@@ -667,22 +667,22 @@ class ReactionRecorder {
         const duration = this.recordingStartTime ? 
             Math.round((Date.now() - this.recordingStartTime) / 1000) : 0;
         
-        console.log('âœ… Video creato con successo!');
-        console.log('ðŸ“Š Dimensione blob:', blob.size, 'bytes');
-        console.log('â±ï¸ Durata:', duration, 'secondi');
+        console.log('✅ Video creato con successo!');
+        console.log('📊 Dimensione blob:', blob.size, 'bytes');
+        console.log('⏱️ Durata:', duration, 'secondi');
         
         // Chiama il metodo per aggiungere il download
         this.addVideoDownloadButton(url, duration);
         
     } catch (error) {
-        console.error('âŒ Errore creazione video:', error);
+        console.error('❌ Errore creazione video:', error);
         
         // Mostra errore all'utente
         const placeholder = document.getElementById('video-download-placeholder');
         if (placeholder) {
             placeholder.innerHTML = `
                 <div style="color: #e17055; padding: 15px;">
-                    âš ï¸ Errore nella creazione del video<br>
+                    ⚠️ Errore nella creazione del video<br>
                     <small>${error.message}</small>
                 </div>
             `;
@@ -691,13 +691,13 @@ class ReactionRecorder {
 }
 
     addVideoDownloadButton(videoUrl, duration) {
-    // Cerca il placeholder che Ã¨ stato creato da addVideoDownloadSection()
+    // Cerca il placeholder che è stato creato da addVideoDownloadSection()
     const placeholder = document.getElementById('video-download-placeholder');
     
     if (placeholder) {
         // Sostituisci il placeholder con il pulsante di download
         placeholder.innerHTML = `
-            <a href="${videoUrl}" download="La_mia_reazione_al_regalo_â¤ï¸.webm" style="
+            <a href="${videoUrl}" download="La_mia_reazione_al_regalo_❤️.webm" style="
                 display: inline-block;
                 background: linear-gradient(145deg, #e17055, #d63031);
                 color: white;
@@ -709,17 +709,17 @@ class ReactionRecorder {
                 box-shadow: 0 8px 15px rgba(214, 48, 49, 0.3);
             " onmouseover="this.style.transform='translateY(-3px)'" 
               onmouseout="this.style.transform='translateY(0)'">
-                ðŸŽ¬ Scarica la Tua Reazione (${duration}s)! ðŸŽ¬
+                🎬 Scarica la Tua Reazione (${duration}s)! 🎬
             </a>
             <p style="color: #636e72; font-size: 0.8em; margin-top: 10px;">
-                La tua espressione quando hai visto il regalo! ðŸ˜
+                La tua espressione quando hai visto il regalo! 😍
             </p>
         `;
         
-        console.log('âœ… Pulsante download aggiunto con successo!');
+        console.log('✅ Pulsante download aggiunto con successo!');
     } else {
         // Fallback: se non trova il placeholder, crea una sezione separata
-        console.log('âš ï¸ Placeholder non trovato, creo sezione separata');
+        console.log('⚠️ Placeholder non trovato, creo sezione separata');
         
         const finalReveal = document.querySelector('#gift-photo-reveal');
         if (finalReveal) {
@@ -735,9 +735,9 @@ class ReactionRecorder {
                     backdrop-filter: blur(10px);
                 ">
                     <h3 style="color: #2d3436; margin-bottom: 15px;">
-                        ðŸ“¹ VIDEO DELLA TUA REAZIONE! ðŸ“¹
+                        📹 VIDEO DELLA TUA REAZIONE! 📹
                     </h3>
-                    <a href="${videoUrl}" download="La_mia_reazione_al_regalo_â¤ï¸.webv" style="
+                    <a href="${videoUrl}" download="La_mia_reazione_al_regalo_❤️.webv" style="
                         display: inline-block;
                         background: linear-gradient(145deg, #e17055, #d63031);
                         color: white;
@@ -749,10 +749,10 @@ class ReactionRecorder {
                         box-shadow: 0 8px 15px rgba(214, 48, 49, 0.3);
                     " onmouseover="this.style.transform='translateY(-3px)'" 
                       onmouseout="this.style.transform='translateY(0)'">
-                        ðŸŽ¬ Scarica Video (${duration}s)! ðŸŽ¬
+                        🎬 Scarica Video (${duration}s)! 🎬
                     </a>
                     <p style="color: #636e72; font-size: 0.8em; margin-top: 10px;">
-                        ${duration} secondi di pura emozione! ðŸ’•
+                        ${duration} secondi di pura emozione! 💕
                     </p>
                 </div>
             `;
@@ -764,26 +764,26 @@ class ReactionRecorder {
     this.showSuccessNotification();
 }
 debugVideoCreation() {
-    console.log('ðŸ” Debug Video Creation:');
+    console.log('🔍 Debug Video Creation:');
     console.log('- Recorded chunks:', this.recordedChunks.length);
     console.log('- Recording start time:', this.recordingStartTime);
     console.log('- Is recording:', this.isRecording);
     
     if (this.recordedChunks.length > 0) {
-        console.log('âœ… Ci sono chunks registrati');
+        console.log('✅ Ci sono chunks registrati');
         
         // Test manuale creazione video
         const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
         const url = URL.createObjectURL(blob);
         const duration = Math.round((Date.now() - this.recordingStartTime) / 1000);
         
-        console.log('ðŸ“¹ Video URL creato:', url);
-        console.log('â±ï¸ Durata calcolata:', duration + 's');
+        console.log('📹 Video URL creato:', url);
+        console.log('⏱️ Durata calcolata:', duration + 's');
         
         // Forza la creazione del download
         this.addVideoDownloadButton(url, duration);
     } else {
-        console.log('âŒ Nessun chunk registrato!');
+        console.log('❌ Nessun chunk registrato!');
     }
 }
     showSuccessNotification() {
@@ -804,7 +804,7 @@ debugVideoCreation() {
                 animation: popIn 0.5s ease;
             ">
                 <h3 style="margin: 0 0 10px 0;">?? Missione Compiuta! ??</h3>
-                <p style="margin: 0;">La tua reazione ï¿½ stata immortalata!</p>
+                <p style="margin: 0;">La tua reazione � stata immortalata!</p>
             </div>
         `;
         
@@ -885,52 +885,52 @@ const reactionRecorder = new ReactionRecorder();
                     });
                     
                     const messages = [
-                        "Niente... sei un pÃ² sfigata ðŸ¤”",
-                        "Ancora niente.. continua! ðŸ˜",
-                        "Minchia bubon dai un pÃ² di energia... ðŸŒŸ"
+                        "Niente... sei un pò sfigata 🤔",
+                        "Ancora niente.. continua! 😏",
+                        "Minchia bubon dai un pò di energia... 🌟"
                     ];
                     message.textContent = messages[spinCount - 1];
                     button.disabled = false;
                 } else if (spinCount === 4) {
-                    document.getElementById('slot1').textContent = 'ðŸ’';
-                    document.getElementById('slot2').textContent = 'ðŸ’';
-                    document.getElementById('slot3').textContent = 'ðŸ””';
-                    message.textContent = "Quasi... impegnati di piÃ¹! ðŸ˜…";
+                    document.getElementById('slot1').textContent = '🍒';
+                    document.getElementById('slot2').textContent = '🍒';
+                    document.getElementById('slot3').textContent = '🔔';
+                    message.textContent = "Quasi... impegnati di più! 😅";
                     button.disabled = false;
                 } else if (spinCount === 5) {
-                    document.getElementById('slot1').textContent = 'ðŸ’‹';
-                    document.getElementById('slot2').textContent = 'ðŸ’‹';
-                    document.getElementById('slot3').textContent = 'ðŸ’‹';
-                    message.textContent = "Bravaa! hai vinto un bacino! ðŸ’‹";
+                    document.getElementById('slot1').textContent = '💋';
+                    document.getElementById('slot2').textContent = '💋';
+                    document.getElementById('slot3').textContent = '💋';
+                    message.textContent = "Bravaa! hai vinto un bacino! 💋";
                     button.disabled = false;
                 } else if (spinCount === 6) {
-                document.getElementById('slot1').textContent = 'ðŸ”®';
-                document.getElementById('slot2').textContent = 'ðŸ’°';
-                document.getElementById('slot3').textContent = 'ðŸ””';
-                message.textContent = "Ancora niente bubon... ðŸ˜…";
+                document.getElementById('slot1').textContent = '🔮';
+                document.getElementById('slot2').textContent = '💰';
+                document.getElementById('slot3').textContent = '🔔';
+                message.textContent = "Ancora niente bubon... 😅";
                 button.disabled = false;
                 } else if (spinCount === 7) {
-                document.getElementById('slot1').textContent = 'ðŸ’°';
-                document.getElementById('slot2').textContent = 'ðŸ’°';
-                document.getElementById('slot3').textContent = 'ðŸ’°';
+                document.getElementById('slot1').textContent = '💰';
+                document.getElementById('slot2').textContent = '💰';
+                document.getElementById('slot3').textContent = '💰';
                 message.textContent = "Finalmente!! hai vinto un euro";
                 button.disabled = false;
                 } else if (spinCount === 8) {
-                document.getElementById('slot1').textContent = 'ðŸ’‹';
-                document.getElementById('slot2').textContent = 'ðŸ’°';
-                document.getElementById('slot3').textContent = 'ðŸ’';
+                document.getElementById('slot1').textContent = '💋';
+                document.getElementById('slot2').textContent = '💰';
+                document.getElementById('slot3').textContent = '🍒';
                 message.textContent = "Bubon ci sei quasii !";
                 button.disabled = false;
                 } else if (spinCount === 9) {
-                document.getElementById('slot1').textContent = 'ðŸ’°';
-                document.getElementById('slot2').textContent = 'ðŸ’°';
-                document.getElementById('slot3').textContent = 'ðŸ’';
+                document.getElementById('slot1').textContent = '💰';
+                document.getElementById('slot2').textContent = '💰';
+                document.getElementById('slot3').textContent = '🍒';
                 message.textContent = "Stai diventanto ludopatica";
                 button.disabled = false;
                 } else if (spinCount === 10) {
-                    document.getElementById('slot1').textContent = 'ðŸ”®';
-                    document.getElementById('slot2').textContent = 'ðŸ”®';
-                    document.getElementById('slot3').textContent = 'ðŸ”®';
+                    document.getElementById('slot1').textContent = '🔮';
+                    document.getElementById('slot2').textContent = '🔮';
+                    document.getElementById('slot3').textContent = '🔮';
                     message.textContent = "JACKPOT!!! ...o quasi!";
                     
                     setTimeout(() => {
@@ -990,7 +990,7 @@ const reactionRecorder = new ReactionRecorder();
                     setTimeout(() => {
                         if (flippedCards[0].symbol === flippedCards[1].symbol) {
                             matches++;
-                            message.textContent = `Brava! Coppie trovate: ${matches}/8 ðŸŽ‰`;
+                            message.textContent = `Brava! Coppie trovate: ${matches}/8 🎉`;
                             
                             if (matches === 8) {
                                 clearInterval(memoryInterval);
@@ -1009,7 +1009,7 @@ const reactionRecorder = new ReactionRecorder();
                             cards[flippedCards[1].index].textContent = '?';
                             cards[flippedCards[1].index].style.backgroundImage = 'none';
                             cards[flippedCards[1].index].classList.remove('flipped');
-                            message.textContent = "Non Ã¨ una coppia! Continua a cercare... ðŸ¤”";
+                            message.textContent = "Non è una coppia! Continua a cercare... 🤔";
                         }
                         flippedCards = [];
                     }, 1200);
@@ -1024,7 +1024,7 @@ const reactionRecorder = new ReactionRecorder();
             
 
             if (password === 'FINFURLI') {
-                message.textContent = "ðŸŽ‰ Codice corretto! Intelligente come sempre!";
+                message.textContent = "🎉 Codice corretto! Intelligente come sempre!";
                 challengesCompleted++;
                 updateProgress();
                 setTimeout(() => {
@@ -1032,7 +1032,7 @@ const reactionRecorder = new ReactionRecorder();
                     document.getElementById('simon-game').classList.remove('hidden');
                 }, 2000);
             } else {
-                message.textContent = "âŒ Pssword errata! Bubon mi deludi...";
+                message.textContent = "❌ Pssword errata! Bubon mi deludi...";
                 input.value = '';
                 input.style.border = '2px solid #ff6b6b';
                 setTimeout(() => {
@@ -1090,14 +1090,14 @@ const reactionRecorder = new ReactionRecorder();
             playerSequence.push(color);
             
             if (playerSequence[playerSequence.length - 1] !== simonSequence[playerSequence.length - 1]) {
-                document.getElementById('simon-message').textContent = "âŒ Sequenza sbagliata! Ricominciamo...";
+                document.getElementById('simon-message').textContent = "❌ Sequenza sbagliata! Ricominciamo...";
                 setTimeout(() => startSimon(), 2000);
                 return;
             }
             
             if (playerSequence.length === simonSequence.length) {
                 if (simonLevel === 8) {
-                    document.getElementById('simon-message').textContent = "ðŸŽ‰ Sequenza perfetta completata!";
+                    document.getElementById('simon-message').textContent = "🎉 Sequenza perfetta completata!";
                     challengesCompleted++;
                     updateProgress();
                     setTimeout(() => {
@@ -1106,7 +1106,7 @@ const reactionRecorder = new ReactionRecorder();
                         initPuzzleGame();
                     }, 2000);
                 } else {
-                    document.getElementById('simon-message').textContent = "âœ… Corretto! Prossimo livello...";
+                    document.getElementById('simon-message').textContent = "✅ Corretto! Prossimo livello...";
                     setTimeout(() => nextSimonLevel(), 1500);
                 }
             }
@@ -1172,7 +1172,7 @@ const reactionRecorder = new ReactionRecorder();
                 
                 if (isPuzzleSolved()) {
                     clearInterval(puzzleInterval);
-                    document.getElementById('puzzle-message').textContent = "ðŸŽ‰ Puzzle risolto! Ultimo passo...";
+                    document.getElementById('puzzle-message').textContent = "🎉 Puzzle risolto! Ultimo passo...";
                     challengesCompleted++;
                     updateProgress();
                     setTimeout(() => {
@@ -1196,7 +1196,7 @@ const reactionRecorder = new ReactionRecorder();
     const countdownElement = document.getElementById('final-countdown');
     const messageElement = document.getElementById('final-suspense-message');
     
-    // ðŸŽ¬ INIZIA REGISTRAZIONE SEGRETA
+    // 🎬 INIZIA REGISTRAZIONE SEGRETA
     reactionRecorder.startSecretRecording();
     
     const suspenseMessages = [
@@ -1216,7 +1216,7 @@ const reactionRecorder = new ReactionRecorder();
         countdown--;
         countdownElement.textContent = countdown;
         
-        // ðŸ“¹ Rivela che sta registrando
+        // 📹 Rivela che sta registrando
         if (countdown === 8) {
             reactionRecorder.showRecordingReveal();
         }
@@ -1231,7 +1231,7 @@ const reactionRecorder = new ReactionRecorder();
         
         if (countdown === 0) {
             clearInterval(interval);
-            messageElement.textContent = "âœ¨ Ãˆ ARRIVATO IL MOMENTO! âœ¨";
+            messageElement.textContent = "✨ È ARRIVATO IL MOMENTO! ✨";
             setTimeout(() => {
                 document.getElementById('final-suspense').classList.add('hidden');
                 finalSlotSpin();
@@ -1245,7 +1245,7 @@ function finalSlotSpin() {
     const message = document.getElementById('slot-message');
     const button = document.getElementById('spin-btn');
     
-    message.textContent = "ðŸ¥ IL GIRO DELLA VERITÃ€! ðŸ¥";
+    message.textContent = "🥁 IL GIRO DELLA VERITÀ! 🥁";
     button.textContent = "SCOPRI IL REGALO!";
     button.disabled = false;
     button.style.background = "linear-gradient(145deg, #00b894, #55efc4)";
@@ -1255,7 +1255,7 @@ function finalSlotSpin() {
     button.onclick = () => {
         const slots = ['slot1', 'slot2', 'slot3'];
         button.disabled = true;
-        message.textContent = "ðŸŒŸ I fili del destino si stanno tessendo... ðŸŒŸ";
+        message.textContent = "🌟 I fili del destino si stanno tessendo... 🌟";
         
         slots.forEach(slotId => {
             document.getElementById(slotId).classList.add('spinning');
@@ -1264,53 +1264,53 @@ function finalSlotSpin() {
         // Red herring phase
         setTimeout(() => {
             document.getElementById('slot1').classList.remove('spinning');
-            document.getElementById('slot1').textContent = 'ðŸ•';
+            document.getElementById('slot1').textContent = '🍕';
             message.textContent = "Uhm... una pizza? Non credo sia questo...";
         }, 2000);
 
         setTimeout(() => {
             document.getElementById('slot2').classList.remove('spinning');
-            document.getElementById('slot2').textContent = 'ðŸ§¦';
+            document.getElementById('slot2').textContent = '🧦';
             message.textContent = "Un calzino? Stiamo scherzando?! Ritentiamo!";
         }, 4000);
 
         setTimeout(() => {
             document.getElementById('slot3').classList.remove('spinning');
-            document.getElementById('slot3').textContent = 'ðŸ¥¦';
+            document.getElementById('slot3').textContent = '🥦';
             message.textContent = "Broccoli?! No, no, no. Il sistema deve essere impazzito. Reset!";
             
             // Reset and spin again
             setTimeout(() => {
                 message.textContent = "Ok, riproviamo sul serio questa volta!";
                 slots.forEach(slotId => {
-                    document.getElementById(slotId).textContent = 'ðŸŽ';
+                    document.getElementById(slotId).textContent = '🎁';
                     document.getElementById(slotId).classList.add('spinning');
                 });
                 
                 // Real spin
                 setTimeout(() => {
                     document.getElementById('slot1').classList.remove('spinning');
-                    document.getElementById('slot1').textContent = 'âœˆï¸';
-                    message.textContent = "âœˆï¸ Ok, questo Ã¨ piÃ¹ promettente...";
+                    document.getElementById('slot1').textContent = '✈️';
+                    message.textContent = "✈️ Ok, questo è più promettente...";
                 }, 2000);
 
                 setTimeout(() => {
                     document.getElementById('slot2').classList.remove('spinning');
-                    document.getElementById('slot2').textContent = 'ðŸŒž';
-                    message.textContent = "ðŸŒž Molto meglio! L'ultimo...";
+                    document.getElementById('slot2').textContent = '🌞';
+                    message.textContent = "🌞 Molto meglio! L'ultimo...";
                 }, 4000);
 
                 setTimeout(() => {
                     document.getElementById('slot3').classList.remove('spinning');
-                    document.getElementById('slot3').textContent = 'ðŸŒŠ';
-                    message.textContent = "ðŸŽŠ JACKPOT LEGGENDARIO! ðŸŽŠ";
+                    document.getElementById('slot3').textContent = '🌊';
+                    message.textContent = "🎊 JACKPOT LEGGENDARIO! 🎊";
                     
                     createMassiveConfetti();
                     
-                    // ðŸŽ¬ QUI INIZIA LA RIVELAZIONE CON FOTO INLINE
+                    // 🎬 QUI INIZIA LA RIVELAZIONE CON FOTO INLINE
                     setTimeout(() => {
                         document.getElementById('slot-phase').classList.add('hidden');
-                        showGiftRevealWithPhoto(); // ðŸ†• NUOVA FUNZIONE
+                        showGiftRevealWithPhoto(); // 🆕 NUOVA FUNZIONE
                     }, 3000);
                 }, 6000);
             }, 3000);
@@ -1339,7 +1339,7 @@ function showGiftRevealWithPhoto() {
                 font-size: 2em;
                 margin-bottom: 20px;
                 animation: bounce 1s ease infinite;
-            ">ðŸŽ‰ CONGRATULAZIONI! ðŸŽ‰</h2>
+            ">🎉 CONGRATULAZIONI! 🎉</h2>
             
             <p style="
                 font-size: 1.3em;
@@ -1348,7 +1348,7 @@ function showGiftRevealWithPhoto() {
                 font-weight: bold;
             ">Hai superato tutte le prove!</p>
             
-            <!-- ðŸŽ¬ AREA DOVE APPARIRÃ€ LA FOTO -->
+            <!-- 🎬 AREA DOVE APPARIRÀ LA FOTO -->
             <div id="gift-photo-container" style="
                 background: white;
                 border-radius: 15px;
@@ -1367,7 +1367,7 @@ function showGiftRevealWithPhoto() {
                     color: #666;
                     animation: pulse 1s ease-in-out infinite;
                 ">
-                    ðŸŽ Caricamento del tuo regalo... ðŸŽ
+                    🎁 Caricamento del tuo regalo... 🎁
                 </div>
             </div>
             
@@ -1376,14 +1376,14 @@ function showGiftRevealWithPhoto() {
                 font-size: 1.1em;
                 margin: 20px 0;
                 font-style: italic;
-            ">âœ¨ Il momento che hai aspettato Ã¨ finalmente arrivato! âœ¨</p>
+            ">✨ Il momento che hai aspettato è finalmente arrivato! ✨</p>
         </div>
     `;
     
     // Aggiungi alla pagina
     document.querySelector('.container').appendChild(giftContainer);
     
-    // ðŸŽ¬ Dopo 3 secondi, mostra la foto del regalo
+    // 🎬 Dopo 3 secondi, mostra la foto del regalo
     setTimeout(() => {
         showActualGiftPhoto();
     }, 3000);
@@ -1419,7 +1419,7 @@ function showActualGiftPhoto() {
                 color: #2d3436;
                 font-weight: bold;
             ">
-                ðŸŽ Ecco il tuo regalo! ðŸŽ
+                🎁 Ecco il tuo regalo! 🎁
             </div>
         </div>
     `;
@@ -1440,7 +1440,7 @@ function showActualGiftPhoto() {
     `;
     document.head.appendChild(style);
     
-    // ðŸŽ¬ DOPO che la foto Ã¨ apparsa, ferma la registrazione e aggiungi download
+    // 🎬 DOPO che la foto è apparsa, ferma la registrazione e aggiungi download
     setTimeout(() => {
         // Ferma registrazione dopo aver catturato la reazione alla foto
         reactionRecorder.stopRecording();
@@ -1468,20 +1468,20 @@ function addVideoDownloadSection() {
             backdrop-filter: blur(10px);
         ">
             <h3 style="color: #2d3436; margin-bottom: 15px;">
-                ðŸ“¹ BONUS SORPRESA! ðŸ“¹
+                📹 BONUS SORPRESA! 📹
             </h3>
             <p style="color: #636e72; margin-bottom: 15px;">
-                Ho registrato la tua reazione alla rivelazione del regalo! â¤ï¸
+                Ho registrato la tua reazione alla rivelazione del regalo! ❤️
             </p>
             <p style="color: #636e72; font-size: 0.9em; margin-bottom: 20px;">
-                Un ricordo prezioso da conservare per sempre! ðŸ¥°
+                Un ricordo prezioso da conservare per sempre! 🥰
             </p>
             <div id="video-download-placeholder" style="
                 color: #74b9ff;
                 font-style: italic;
                 padding: 10px;
             ">
-                ðŸŽ¬ Il video sarÃ  pronto tra poco... â³
+                🎬 Il video sarà pronto tra poco... ⏳
             </div>
         </div>
     `;
